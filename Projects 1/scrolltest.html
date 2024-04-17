@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parallax Test</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .scroll {
+           position: relative;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           height: 200px;
+           overflow: hidden; /* Ensure content inside .scroll is cropped */
+           background-color: brown;
+        }
+        .scroll img {
+            position: absolute;
+            width: 100%;
+            pointer-events: none;
+        }
+        .start {
+            position: relative;
+            padding: 20px;
+        }
+    </style>
+    <!-- Scroll Trigger Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script> 
+<!-- Scroll Trigger Plugin -->
+</head>
+<body>
+<div class="scroll">
+    <img src="images/Layer 7.png" id="sky">
+    <img src="images/Layer 6.png" id="cloud-2">
+    <img src="images/Layer 5.png" id="cloud-1">
+    <img src="images/Layer 4.png" id="mountain-2">
+    <img src="images/Layer 3.png" id="mountain-1">
+    <img src="images/Layer 2.png" id="ground">
+    <img src="images/Hoofhisser Logo.png" id="logo">
+    <img src="images/Layer 1.png" id="hill">
+    <img src="images/Glacier.png" id="glacier">
+</div>
+<div class="start">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Interdum consectetur libero id faucibus nisl tincidunt eget nullam. Sed vulputate odio ut enim blandit volutpat. Mus mauris vitae ultricies leo integer malesuada nunc vel. Dictum at tempor commodo ullamcorper a. Faucibus a pellentesque sit amet porttitor eget dolor. Tellus in hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Pretium aenean pharetra magna ac placerat. Sed id semper risus in hendrerit. Id neque aliquam vestibulum morbi blandit cursus risus at ultrices. Ac tortor dignissim convallis aenean et tortor at. Bibendum at varius vel pharetra vel turpis nunc eget. Tincidunt ornare massa eget egestas purus viverra accumsan. Dignissim suspendisse in est ante in nibh mauris. Eu feugiat pretium nibh ipsum consequat nisl. Facilisis mauris sit amet massa vitae tortor condimentum lacinia quis. Nunc faucibus a pellentesque sit amet porttitor eget dolor morbi.
+
+Lobortis scelerisque fermentum dui faucibus in ornare quam. Facilisis sed odio morbi quis. Lobortis elementum nibh tellus molestie nunc non. Dolor sit amet consectetur adipiscing elit pellentesque habitant. Sit amet nisl purus in. Non sodales neque sodales ut etiam sit. Tellus orci ac auctor augue mauris augue neque gravida in. Faucibus et molestie ac feugiat sed lectus. Venenatis cras sed felis eget. Ut eu sem integer vitae justo eget. Orci phasellus egestas tellus rutrum. Pellentesque adipiscing commodo elit at. Eget nunc scelerisque viverra mauris in aliquam sem fringilla ut. Volutpat ac tincidunt vitae semper quis lectus nulla at. Quis imperdiet massa tincidunt nunc. Adipiscing diam donec adipiscing tristique risus nec feugiat in. Aliquam eleifend mi in nulla posuere sollicitudin. Scelerisque eu ultrices vitae auctor eu augue.
+
+Eget egestas purus viverra accumsan in nisl. Egestas purus viverra accumsan in nisl. Libero enim sed faucibus turpis in eu mi bibendum. Morbi quis commodo odio aenean sed adipiscing diam donec adipiscing. Congue eu consequat ac felis donec et. Dignissim suspendisse in est ante in nibh mauris cursus mattis. Ornare massa eget egestas purus. Risus nullam eget felis eget nunc. Consectetur purus ut faucibus pulvinar elementum. Pellentesque sit amet porttitor eget. Lobortis elementum nibh tellus molestie nunc. Sem integer vitae justo eget. Sed viverra tellus in hac habitasse platea dictumst vestibulum. Aliquam vestibulum morbi blandit cursus risus at ultrices mi tempus. Enim praesent elementum facilisis leo vel fringilla est ullamcorper eget.
+
+In cursus turpis massa tincidunt. Lectus urna duis convallis convallis tellus. Tincidunt ornare massa eget egestas purus viverra accumsan. Dictumst quisque sagittis purus sit amet. Aenean euismod elementum nisi quis eleifend. Hendrerit gravida rutrum quisque non tellus. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Tristique magna sit amet purus gravida quis blandit turpis cursus. Vitae turpis massa sed elementum tempus. Libero id faucibus nisl tincidunt eget nullam. Enim facilisis gravida neque convallis a. Proin libero nunc consequat interdum varius sit. Orci porta non pulvinar neque laoreet suspendisse. Sed risus ultricies tristique nulla aliquet enim tortor. Sit amet venenatis urna cursus eget nunc scelerisque. Tincidunt praesent semper feugiat nibh sed pulvinar proin. Cursus euismod quis viverra nibh cras pulvinar mattis nunc. Ut sem nulla pharetra diam sit. Nunc lobortis mattis aliquam faucibus. Ut consequat semper viverra nam.
+
+Accumsan in nisl nisi scelerisque eu ultrices. Commodo odio aenean sed adipiscing diam donec adipiscing tristique. Vivamus at augue eget arcu dictum varius. In arcu cursus euismod quis viverra. Vitae semper quis lectus nulla at volutpat diam ut venenatis. Non odio euismod lacinia at quis. Lorem ipsum dolor sit amet consectetur adipiscing. Eget duis at tellus at urna condimentum mattis. Morbi tristique senectus et netus et malesuada fames ac turpis. Aenean et tortor at risus viverra adipiscing. Volutpat consequat mauris nunc congue nisi vitae suscipit tellus mauris. Aenean sed adipiscing diam donec. Adipiscing diam donec adipiscing tristique risus nec. Scelerisque viverra mauris in aliquam sem fringilla ut.
+</div>
+<script>
+ gsap.registerPlugin(ScrollTrigger);
+
+gsap.utils.toArray('.scroll img').forEach(function(img, index) {
+    gsap.to(img, {
+        y: -200, // Adjust this value to control the parallax effect
+        ease: "none",
+        scrollTrigger: {
+            trigger: ".scroll",
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true
+        }
+    });
+});
+</script>
+</body>
+</html>

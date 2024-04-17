@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #353b48;
+}
+.container {
+  background-color: #ff6d6d;
+  width: 95%;
+  margin: 0 auto;
+  min-height: 1000px;
+  align-items: center;
+}
+
+.search-options-container {
+  background-color: #4fffad;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  gap: 10px;
+}
+
+
+.search-options-container > * {
+  background-color: #f6c88f;
+  display: flex;
+  justify-content: center; /* Align content horizontally */
+  align-items: center; /* Align content vertically */
+}
+
+.search-title {grid-area: 1 / 1 / 1 / 2;}
+.search {grid-area: 2 / 1 / 2 / 2;}
+.category-title {grid-area: 1 / 2 / 1 / 3;}
+.category {grid-area: 2 / 2 / 2 / 3;}
+.price-title {grid-area: 1 / 3 / 1 / 4;}
+.price {grid-area: 2 / 3 / 2 / 4;}
+
+.logo {
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: #e74c3c;
+  margin-bottom: 10px;
+}
+.search-options-container input[type="text"] {
+  padding: 5px 5px;
+  outline: none;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.search-options-container h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.search-options-container ul {
+  list-style: none;
+  display: flex;
+}
+.search-options-container ul li {
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  background-color: #a6bceb;
+  border-radius: 10px;
+  transition-duration: 0.3s;
+}
+.search-options-container ul li:hover {
+  background-color: #dcdde1;
+  transform: scale(1.08);
+  transition-duration: 0.3s;
+}
+
+.products {
+  display: grid;
+  /* Adjust the minmax() values as needed to fit your design */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  padding: 10px;
+  /* This ensures that the items attempt to take up equal space but stay aligned to the left */
+  justify-content: start;
+}
+
+
+.product {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: #63636333 0px 2px 8px 0px;
+}
+
+.product:hover {
+  transform: scale(1.03);
+  transition-duration: 0.3s;
+}
+
+.img {
+  display: flex;
+  justify-content: center; /* Horizontally center the content */
+  margin: 10px;
+}
+
+.product .img img {
+  width: 80%;
+  height: auto;
+  transition: transform 0.5s;
+  background-color: #2980b9;
+}
+
+
+.product-details {
+  padding: 10px;
+  text-align: center;
+  background-color: #4fffad;
+  display: block; /* Change from flex to block */
+}
+
+.product-details span:nth-child(1) {
+  color: #e74c3c;
+  padding-bottom: 10px;
+  font-weight: 600;
+  display: block; /* Ensure each span is on a new line */
+}
+
+.product-details span:nth-child(2) {
+  color: #2980b9;
+  padding-bottom: 10px;
+  font-weight: 600;
+  display: block; /* Ensure each span is on a new line */
+}
+
+.product-details span:nth-child(3) {
+  font-size: 11px;
+  font-weight: 600;
+  color: #16a085;
+  display: block; /* Ensure each span is on a new line */
+}
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="search-options-container">
+
+            <div class="search-title">
+                <div class="logo">Items</div>
+            </div>
+            <div class="search">
+                <input type="text" id="txtSearch" placeholder="Search Items...">
+            </div>
+            <div class="category-title">
+                <h3>Category</h3>
+            </div>
+            <div class="category">
+                <ul class="category-list">
+    
+                </ul>
+            </div>
+            <div class="price-title">
+                <h3>Price Range</h3>
+            </div>
+            <div class="price">
+                <input type="range" id="priceRange">
+                <span class="priceValue">0</span>
+            </div>
+          </div>
+      <div class="content">
+        <div class="products"></div>
+      </div>
+    </div>
+    <script>
+        const data = [
+  {
+    id: 1,
+    name: "Sparkling Gem",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/32855453_5vlJ3HtEKQW6Seb.png?1642772596",
+    amt: 300,
+    description: "Allows you to add any horn add-on to your Hoofhisser.",
+    catagory: "Add-on",
+  },
+
+  {
+    id: 2,
+    name: "Shop Ticket",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/38430606_GfjO6EVMlbmvS3z.png?1642772479",
+    amt: 0,
+    description: "Allows you to buy any item that is not available in the shop. (The teeth to purchase said item is required.)",
+    catagory: "Misc",
+  },
+
+  {
+    id: 3,
+    name: "Sharp Thorn",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/38488477_rJILsMg6oCgCGHM.png?1642772479",
+    amt: 1000,
+    description: "Allows you to add spikes anywhere on a Hoofhisser's body.",
+    catagory: "Add-on",
+  },
+  {
+    id: 4,
+    name: "Sweet Fruit",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/38488789_7BH6Yls0aLT5lDb.png?1642772479",
+    amt: 1500,
+    description: "Allows you to add a cat, dog, bat nose, or bird beak to your Hoofhisser.",
+    catagory: "Add-on",
+  },
+  {
+    id: 5,
+    name: "Umbrella Leaf",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/38489250_IJA13UjCUrjCmAr.png?1642772509",
+    amt: 800,
+    description: "Allows you to add a cobra hood to your Hoofhisser.",
+    catagory: "Add-on",
+  },
+
+  {
+    id: 6,
+    name: "Otherworldly Scale",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/32854389_4g9FBF86xpdMb2z.gif?1642772551",
+    amt: 0,
+    description: "Allows you to add or remove an otherwordly trait. It can also be used to swap an otherwordly trait for another otherwordly trait.",
+    catagory: "Scales",
+  },
+
+  {
+    id: 7,
+    name: "Plush Potion",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/38736095_ua6xJzhjbMdJdVr.gif?1642772479",
+    amt: 5000,
+    description: "Can give a Hoofhisser plush like qualities.",
+    catagory: "Potions",
+  },
+  {
+    id: 8,
+    name: "Arial Potion",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/39492660_xsm62P0N1xgs102.gif?1642772521",
+    amt: 3500,
+    description: "Can give a Hoofhisser any kind of wings on any part of their body.",
+    catagory: "Potions",
+  },
+  {
+    id: 9,
+    name: "Color Changing Potion",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/40841901_wo2A3QMWY1kVSqe.gif?1642772503",
+    amt: 700,
+    description: "Can give a Hoofhisser an alternate color palette.",
+    catagory: "Potions",
+  },
+
+  {
+    id: 10,
+    name: "Form Changing Potion",
+    img: "https://f2.toyhou.se/file/f2-toyhou-se/images/41110717_h4GUzT8sP9H6Z22.gif?1642772452",
+    amt: 4000,
+    description: "Can give your Hoofhisser an alternate form.",
+    catagory: "Potions",
+  },
+];
+
+const productsContainer = document.querySelector(".products");
+const categoryList = document.querySelector(".category-list");
+
+function displayProducts(products) {
+  if (products.length > 0) {
+    const product_details = products
+      .map(
+        (product) => `
+  <div class="product">
+  <div class="img">
+    <img src="${product.img}" alt="${product.name}" />
+  </div>
+  <div class="product-details">
+    <span class="name">${product.name}</span>
+    <span class="amt">🦷 ${product.amt}</span>
+    <span class="description">${product.description}</span>
+  </div>
+</div>`
+      )
+      .join("");
+
+    productsContainer.innerHTML = product_details;
+  } else {
+    productsContainer.innerHTML = "<h3>No Products Available</h3>";
+  }
+}
+
+function setCategories() {
+  const allCategories = data.map((product) => product.catagory);
+  //console.log(allCategories);
+  const catagories = [
+    "All",
+    ...allCategories.filter((product, index) => {
+      return allCategories.indexOf(product) === index;
+    }),
+  ];
+  //console.log(catagories);
+  categoryList.innerHTML = catagories.map((catagory) => `<li>${catagory}</li>`).join("");
+
+  categoryList.addEventListener("click", (e) => {
+    const selectedCatagory = e.target.textContent;
+    selectedCatagory === "All" ? displayProducts(data) : displayProducts(data.filter((product) => product.catagory == selectedCatagory));
+  });
+}
+const priceRange = document.querySelector("#priceRange");
+const priceValue = document.querySelector(".priceValue");
+
+function setPrices() {
+  const priceList = data.map((product) => product.amt);
+  const minPrice = Math.min(...priceList);
+  const maxPrice = Math.max(...priceList);
+  priceRange.min = minPrice;
+  priceRange.max = maxPrice;
+  priceValue.textContent = "🦷 " + maxPrice;
+
+  priceRange.addEventListener("input", (e) => {
+    priceValue.textContent = "🦷 " + e.target.value;
+    displayProducts(data.filter((product) => product.amt <= e.target.value));
+  });
+}
+
+const txtSearch = document.querySelector("#txtSearch");
+txtSearch.addEventListener("keyup", (e) => {
+  const value = e.target.value.toLowerCase().trim();
+  if (value) {
+    displayProducts(data.filter((product) => product.name.toLowerCase().indexOf(value) !== -1));
+  } else {
+    displayProducts(data);
+  }
+});
+
+displayProducts(data);
+setCategories();
+setPrices();
+    </script>
+  </body>
+</html>

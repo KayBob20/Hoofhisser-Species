@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<style>
+        /* Google Fonts Import Link */
+        @import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Oswald:wght@200..700&display=swap');
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+        }
+        body {
+          height: 100%;
+          background-color: white;
+          color: var(--darkest-blue);
+          
+            font-family: "Catamaran", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 330;
+            font-style: normal;
+
+            letter-spacing: 1px;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Font for headers and titles */
+        h1, h2, h3, h4, h5, h6 {
+          font-family: "Oswald", sans-serif;
+          font-weight: 400;
+        }
+        h1 {font-size: var(--font-size-biggest);}
+        h2 {font-size: calc(var(--font-size-accent) / 1.2);}
+        h3 {font-size: calc(var(--font-size-accent) / 1.3); font-weight: 300;}
+        h4 {font-size: calc(var(--font-size-accent) / 1.4); font-weight: 300;}
+        h5 {font-size: calc(var(--font-size-accent) / 1.5); font-weight: 300;}
+        h6 {font-size: calc(var(--font-size-accent) / 1.6); font-weight: 300;}
+
+        p {
+          text-indent: var(--font-size);
+        }
+
+        a.link {
+          /* hyperlink styles */
+          color: var(--main-blue);
+          text-decoration: none;
+          transition-duration: var(--transition-duration);
+        }
+        a:hover.link {
+          color: var(--dark-blue);
+          transition-duration: var(--transition-duration);
+
+          font-weight: 400;
+        }
+
+        :root {
+      --transparent-white: #ffffff69;
+      --white: #ffffff;
+      --light-green: #d2f8eb;
+      --green: #00D2AA;
+      --main-blue: #00ABC3;
+      --dark-blue: #04748C;
+      --darkest-blue: #012746;
+
+      --transparent-black: #01274619;
+      
+      --transition-duration: 0.3s;
+
+      --font-size: 1rem;
+      --font-size-accent: 1.5rem;
+      --font-size-biggest: 2rem;
+
+      --blurry-box-width: 100%;
+      --max-content-width: 1000px;
+
+      --border-radius: 16px;
+
+      --basic-margin: 14px;
+      --basic-padding: 16px;
+
+      --box-shadow: 0 5px 10px -3px #00000044;
+
+      --bg-image: url(images/Bg\ short.png);
+      --bg-image-smol: url(images/Bg\ tall.png);
+
+      --thin-border: solid 1px var(--transparent-black);
+    }
+
+        .search-container {
+    
+    --searchbar-max-width: 300px;
+    
+    position: relative;
+    max-width: var(--searchbar-max-width);
+    width: 40%;
+    background-color: var(--light-green);
+    display: flex;
+    align-items: center;
+    padding: calc(var(--basic-padding) / 4) var(--basic-padding);
+    border-radius: calc(var(--border-radius) * 2);
+    box-sizing: border-box;
+
+    margin-top: 200px;
+    }
+    
+    #searchInput {
+    padding: calc(var(--basic-padding) / 2);
+    font-size: var(--font-size);
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0); /* transparent */
+    color: var(--darkest-blue);
+
+    font-family: "Catamaran", sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+    }
+
+    #searchInput::placeholder {
+        color: var(--main-blue);
+
+        font-family: "Catamaran", sans-serif;
+        font-weight: 300;
+        letter-spacing: 1px;
+    }
+    
+    .autocomplete-items {
+    position: absolute;
+    border-top: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-width: var(--searchbar-max-width);
+    border-radius: calc(var(--border-radius) / 2);
+    transform: translateY(calc(var(--basic-padding) / 2));
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+
+    border: var(--thin-border);
+    }
+    
+    .btn-link {
+      width: 100%;
+    }
+    
+    .suggestions-btn {
+      background-color: var(--white);
+      font-size: var(--font-size);
+      text-align: left;
+      width: 100%;
+      padding: calc(var(--basic-padding) / 1.5) var(--basic-padding);
+      border: none;
+      border-style: none;
+      cursor: pointer;
+      box-shadow: 0px 0px 0px 1.5px var(--transparent-black); /* dont mess with, it makes the line under each option */
+
+      font-family: inherit;
+      font-weight: inherit;
+      letter-spacing: inherit;
+
+      color: var(--darkest-blue);
+    }
+    
+    .suggestions-btn:hover {
+      background-color: var(--light-green);
+    }
+
+    .searchbtn-decoration { /* had to put it in a button so it wouldn't resive whenever the x button shows up */
+      background: none;
+      border: none;
+    }
+    
+    .feather-search {
+      height: 24px;
+      fill: none;
+      stroke: var(--main-blue); /* Main color */
+      stroke-width: 4;
+
+          
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+    }
+
+    .clear-button {
+      border: none;
+      background: none;
+      height: 24px;
+
+      cursor: pointer;
+
+      display: none;
+  }
+
+  .clear-svg {
+    height: 100%;
+    fill: var(--main-blue);
+    display: flex;
+    align-items: center; /* Vertically center the content */
+    justify-content: center; /* Horizontally center the content */
+}
+</style>
+
+</head>
+<body>
+    <div class="search-container">
+        <button class="searchbtn-decoration">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button id="clearButton" class="clear-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+      </button>
+      <div class="autocomplete-items" id="autocompleteItems"></div>
+    </div>
+
+    <script>
+        // -----------------
+        // Search Start
+        // -----------------
+    
+        const suggestions = [
+          { label: "Home", words: ["start", "homepage"], href: "https://www.google.com" },
+          { label: "FAQ", words: ["help", "question"], href: "https://www.facebook.com" }
+        ];
+    
+        const searchInput = document.getElementById('searchInput');
+        const autocompleteItems = document.getElementById('autocompleteItems');
+        const clearButton = document.getElementById("clearButton");
+    
+        searchInput.addEventListener('input', function() {
+          const inputValue = this.value.toLowerCase();
+          autocompleteItems.innerHTML = '';
+    
+          const matches = suggestions.filter(suggestion =>
+            suggestion.label.toLowerCase().includes(inputValue) || suggestion.words.some(word => word.toLowerCase().includes(inputValue))
+          );
+    
+          matches.forEach(suggestion => {
+            const item = document.createElement('div');
+            item.innerHTML = `<a href="${suggestion.href}" class="btn-link"><button class="suggestions-btn">${suggestion.label}</button></a>`;
+            autocompleteItems.appendChild(item);
+          });
+    
+          autocompleteItems.style.display = matches.length && inputValue !== '' ? 'block' : 'none';
+          
+          // Show the clear button if the input field is not empty, otherwise hide it
+          if (inputValue.trim() !== "") {
+              clearButton.style.display = "block";
+          } else {
+              clearButton.style.display = "none";
+          }
+        });
+    
+        searchInput.addEventListener('focus', function() {
+          if (searchInput.value !== '') {
+            autocompleteItems.style.display = 'block';
+          }
+        });
+    
+        searchInput.addEventListener('blur', function() {
+          if (searchInput.value === '') {
+            // If the input value is empty, hide the autocomplete dropdown immediately
+            autocompleteItems.style.display = 'none';
+          } else {
+            // If the input value is not empty, delay hiding the autocomplete dropdown to allow click event processing
+            setTimeout(() => {
+              autocompleteItems.style.display = 'none';
+            }, 150);
+            
+            // Clear the input value when it loses focus
+            this.value = '';
+            // Hide the clear button
+            clearButton.style.display = 'none';
+          }
+        });
+    
+        // -----------------
+        // Search End
+        // -----------------
+    </script>
+    
+</body>
+</html>

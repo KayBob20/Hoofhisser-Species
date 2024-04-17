@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoofhisser Species</title>
+    <link rel="stylesheet" href="website.css">
+    <style>
+      /* -----------------
+    Home Start
+----------------- */
+
+.homepage-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  grid-template-rows: 
+  var(--basic-margin)
+  auto
+  auto 
+  var(--basic-margin)
+  auto;
+
+  /* gap: var(--basic-margin); */
+}
+
+.homepage-grid > * {
+  /* background-color: #dd6f6f6b; */
+  border-radius: var(--border-radius);
+}
+
+.intro-picture {
+  grid-area: 1 / 11 / 4 / 21;
+  background-image: url(https://f2.toyhou.se/file/f2-toyhou-se/images/64244762_eW6IR1ayF1IFd0t.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  z-index: 1;
+}
+
+.intro-card {
+  grid-area: 2 / 2 / 4 / 20;
+  background-color: var(--white);
+  border: var(--thin-border);
+}
+
+.intro-text {
+  grid-area: 2 / 2 / 3 / 12;
+  padding: calc(var(--basic-padding) * 2);
+  padding-bottom: 0;
+}
+
+.intro-text-body {
+  grid-area: 3 / 2 / 4 / 12;
+  padding: calc(var(--basic-padding) * 2);
+  padding-top: var(--font-size);
+}
+
+.intro-discordpic {
+  grid-area: 5 / 2 / 5 / 11;
+  background-color: var(--white);
+  border: var(--thin-border);
+
+  margin-right: var(--basic-margin);
+
+  padding: var(--basic-padding);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-discordpic-text {
+  padding: var(--basic-padding);
+  padding-top: calc(var(--basic-padding) / 3);
+}
+
+.intro-discord-actual-picture {
+  margin-top: var(--basic-padding);
+  display: flex;
+}
+
+.intro-discord-actual-picture img {
+  width: 100%;
+}
+
+.intro-discord {
+  grid-area: 5 / 11 / 5 / 20;
+  background-color: var(--white);
+  border: var(--thin-border);
+
+  padding: var(--basic-padding);
+  
+}
+
+.discord-widget {
+  width: 100%;
+  height: 100%;
+
+  border-radius: calc(var(--border-radius) / 2);
+}
+
+@media only screen and (max-width: 800px) {
+  .intro-picture {
+  grid-area: 1 / 9 / 3 / 21;
+  height: 105%;
+}
+
+.intro-card {
+  grid-area: 2 / 2 / 4 / 20;
+}
+
+.intro-text {
+  grid-area: 2 / 2 / 3 / 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 300px;
+}
+
+.intro-text-body {
+  grid-area: 3 / 2 / 4 / 20;
+}
+}
+/* -----------------
+    Home End
+----------------- */
+
+    </style>
+    
+</head>
+<body>    
+        <!-- -----------------
+        Header Start
+    ----------------- -->
+    <div id="banner-template"></div>
+
+    <div class="sticky">
+      <div class="navbar">
+          <div class="bottom-right-corner">
+              <button id="scrollBtn" onclick="scrollToTop()">▲</button>
+              <div class="theme-button-container">
+                  <button class="theme-toggle">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-6 0 520 520"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-40 30 454 454"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+                  </button>
+              </div>
+            </div>
+            <div class="nav-links-wrapper">
+                <ul class="nav-links">
+                    <!-- Hamburger Menu Icon -->
+                    <button class="hamburger-menu">☰</button>
+                    <a href="home.html" class="hamburger-menu home"><h1>Hoofhissers</h1></a>
+                    <div class="nav-item-container">
+                      <li>
+                        <a href="home.html" class="home"><h1>Hoofhissers</h1></a>
+                      </li>
+                      <li class="center">
+                        <div id="info-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="explore-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="shops-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="help-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="activities-template"></div>
+                      </li>
+                      <div class="search-container">
+                        <button class="searchbtn-decoration">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      </button>
+                      <input type="text" id="searchInput" placeholder="Search...">
+                      <button id="clearButton" class="clear-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                      </button>
+                      <div class="autocomplete-items" id="autocompleteItems"></div>
+                    </div>
+                      </div>
+                    </ul> 
+                  </div>
+                </div>
+    
+        <div class="spacer">
+            <div class="grid1"></div>
+            <div class="grid2"></div>
+            <div class="grid3">
+                <div class="box1"></div>
+                <div class="box2"></div>
+            </div>
+            <div class="grid4"></div>
+        </div>
+    </div>
+    <!-- -----------------
+        Header End
+    ----------------- -->
+<div class="content-wrapper">
+<div class="content">
+<div class="homepage-grid">
+  <div class="intro-picture"></div>
+  <div class="intro-card"></div>
+  <div class="intro-text">
+    
+      <h1>Welcome to the Hoofhisser species!</h1>
+        <br>
+    <p><i>Hoofhissers are a closed species created by <a href="http://kaybobscorner.carrd.co/" class="link">KayBob</a>.</i></p>
+    </div>
+    <div class="intro-text-body">
+    <p>What started off as regular goats turned into Hoofhissers once they were bitten by The Slithren. This caused any of their horns to turn into snakes. Many could not handle their new body changes and would die off. Luckily, some were able to survive. Now Hoofhissers are not only made by being cursed but they have their own society where, they form relationships, battle, and have their own currency.</p>
+    <p>They live in peace with their beloved, scaley, companions.</p>
+    </div>
+  
+
+  <div class="intro-discordpic">
+    <div class="intro-discordpic-text">
+      <h2>Join the discord server to participate in the species!</h2>
+    </div>
+    <div class="intro-discord-actual-picture">
+      <img src="images/Discord pic flipped (should be good quality).png">
+    </div>
+  </div>
+  <div class="intro-discord">
+    <iframe class="discord-widget" src="https://discord.com/widget?id=806537566274191390&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div id="footer-template"></div>
+
+<script>
+    fetch('templates/banner-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('banner-template').innerHTML = html;
+    });
+
+  fetch('templates/info-nav-template.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('info-template').innerHTML = html;
+  });
+
+  fetch('templates/explore-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('explore-template').innerHTML = html;
+    });
+
+    fetch('templates/shops-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('shops-template').innerHTML = html;
+    });
+    
+    fetch('templates/help-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('help-template').innerHTML = html;
+    });
+
+    fetch('templates/activities-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('activities-template').innerHTML = html;
+    });
+
+    fetch('templates/footer-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-template').innerHTML = html;
+    });
+  </script>
+
+<script src="script.js"></script>
+</body>
+</html>

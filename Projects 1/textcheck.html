@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Information Extractor</title>
+<style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 600px; /* Set a fixed width for the container */
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: rgb(220, 193, 160);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center horizontally */
+}
+
+.table-container {
+  overflow-x: auto; /* Enable horizontal scrolling for the table container only */
+}
+
+
+h1 {
+  text-align: center;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#output {
+  margin-top: 20px;
+}
+
+.output {
+  color: #007bff !important;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Masterlist Information Converter</h1>
+    <textarea id="textInput" placeholder="Enter text here..."></textarea>
+  <button id="extractButton">Extract Information</button>
+    <br>
+    <button id="copyButton">Copy Output</button>
+    </div>
+    <div class="table-container">
+    <table id="outputTable">
+      <tr>
+        <th>Image:</th>
+        <th>Owner:</th>
+        <th>Artist:</th>
+        <th>Designer:</th>
+        <th>Status:</th>
+        <th>Horn trait:</th>
+        <th>What's on the horn trait:</th>
+        <th>Mouth trait:</th>
+        <th>Heat pit trait:</th>
+        <th>Eye trait:</th>
+        <th>Ear trait:</th>
+        <th>Feet trait:</th>
+        <th>Tail trait:</th>
+        <th>Mutations:</th>
+        <th>Add-ons:</th>
+      </tr>
+      <tbody id="outputRow">
+      </tr>
+    </table>
+  </div>
+  <script>
+document.getElementById('extractButton').addEventListener('click', extractInfo);
+document.getElementById('copyButton').addEventListener('click', copyOutput);
+
+function extractInfo() {
+  var inputText = document.getElementById('textInput').value;
+  var lines = inputText.split('\n');
+
+  var imageInfo = [];
+  var ownerInfo = []; // Default value for Owner
+  var artistInfo = [];
+  var designerInfo = [];
+  var statusInfo = "Official Hoofhisser"; // Default value for Status
+  var hornTraitInfo = [];
+  var whatHornTraitInfo = [];
+  var mouthTraitInfo = [];
+  var heatPitTraitInfo = [];
+  var eyeTraitInfo = [];
+  var earTraitInfo = [];
+  var feetTraitInfo = [];
+  var tailTraitInfo = [];
+  var mutationsInfo = [];
+  var addOnsInfo = [];
+
+  for (var i = 0; i < lines.length; i++) {
+    var ownerMatch = lines[i].match(/^Owner:\s*(.+)/i);
+    if (ownerMatch) {
+      ownerInfo.push(ownerMatch[1].trim()); // Push into array instead of assigning directly
+      // Check for URL in the next line
+      var nextLineIndex = i + 1;
+      if (nextLineIndex < lines.length) {
+        var urlMatch = lines[nextLineIndex].match(/\b(?:https?:\/\/)\S+/);
+        if (urlMatch) {
+          ownerInfo.push(urlMatch[0].trim()); // Push URL into array
+        }
+      }
+    }
+
+    var artistMatch = lines[i].match(/^Artist:\s*(.+)/i);
+    if (artistMatch) {
+      var artistName = artistMatch[1].trim();
+      artistInfo.push(artistName);
+      // Check for URL in the next line
+      var nextLineIndex = i + 1;
+      if (nextLineIndex < lines.length) {
+        var urlMatch = lines[nextLineIndex].match(/\b(?:https?:\/\/)\S+/);
+        if (urlMatch) {
+          artistInfo.push(urlMatch[0].trim());
+        }
+      }
+    }
+
+    var designerMatch = lines[i].match(/^Designer:\s*(.+)/i);
+    if (designerMatch) {
+      var designerName = designerMatch[1].trim();
+      designerInfo.push(designerName);
+      // Check for URL in the next line
+      var nextLineIndex = i + 1;
+      if (nextLineIndex < lines.length) {
+        var urlMatch = lines[nextLineIndex].match(/\b(?:https?:\/\/)\S+/);
+        if (urlMatch) {
+          designerInfo.push(urlMatch[0].trim());
+        }
+      }
+    }
+
+    var statusMatch = lines[i].match(/^Status:\s*(.*)/i);
+    if (statusMatch) {
+      var statusText = statusMatch[1].trim();
+      if (statusText !== "") {
+        statusInfo = statusText;
+      }
+    }
+
+    var hornTraitMatch = lines[i].match(/^Horn trait:\s*(.+)/i);
+    if (hornTraitMatch) {
+      hornTraitInfo.push(capitalizeWords(hornTraitMatch[1].trim()));
+    }
+
+    var whatHornTraitMatch = lines[i].match(/^What’s on the horn trait:\s*(.+)/i);
+    if (whatHornTraitMatch) {
+      whatHornTraitInfo.push(capitalizeWords(whatHornTraitMatch[1].trim()));
+    }
+
+    var mouthTraitMatch = lines[i].match(/^Mouth trait:\s*(.+)/i);
+    if (mouthTraitMatch) {
+      mouthTraitInfo.push(capitalizeWords(mouthTraitMatch[1].trim()));
+    }
+
+    var heatPitTraitMatch = lines[i].match(/^Heat pit trait:\s*(.+)/i);
+    if (heatPitTraitMatch) {
+      heatPitTraitInfo.push(capitalizeWords(heatPitTraitMatch[1].trim()));
+    }
+
+    var eyeTraitMatch = lines[i].match(/^Eye trait:\s*(.+)/i);
+    if (eyeTraitMatch) {
+      eyeTraitInfo.push(capitalizeWords(eyeTraitMatch[1].trim()));
+    }
+
+    var earTraitMatch = lines[i].match(/^Ear trait:\s*(.+)/i);
+    if (earTraitMatch) {
+      earTraitInfo.push(capitalizeWords(earTraitMatch[1].trim()));
+    }
+
+    var feetTraitMatch = lines[i].match(/^Feet trait:\s*(.+)/i);
+    if (feetTraitMatch) {
+      feetTraitInfo.push(capitalizeWords(feetTraitMatch[1].trim()));
+    }
+
+    var tailTraitMatch = lines[i].match(/^Tail trait:\s*(.+)/i);
+    if (tailTraitMatch) {
+      tailTraitInfo.push(capitalizeWords(tailTraitMatch[1].trim()));
+    }
+
+    var mutationsMatch = lines[i].match(/^Mutations:\s*(.+)/i);
+    if (mutationsMatch) {
+      mutationsInfo.push(capitalizeWords(mutationsMatch[1].trim()));
+    }
+
+    var addOnsMatch = lines[i].match(/^Add-ons:\s*(.+)/i);
+    if (addOnsMatch) {
+      addOnsInfo.push(capitalizeWords(addOnsMatch[1].trim()));
+    }
+
+    // Directly integrate image URL detection here
+    var imageMatch = lines[i].match(/\bhttps?:\/\/\S+\.(jpeg|jpg|gif|png|bmp)\b/i);
+    if (imageMatch) {
+      var imageUrl = imageMatch[0].trim(); // imageMatch[0] contains the matched URL
+      if (isValidImageUrl(imageUrl)) {
+        imageInfo.push(imageUrl);
+      }
+    }
+  }
+
+  // Populate the table with extracted information
+  var outputRow = document.getElementById('outputRow');
+  outputRow.innerHTML = '';
+
+  addCell(imageInfo, outputRow);
+  addCell(ownerInfo.join(', '), outputRow); // Add Owner information
+  addCell(artistInfo.join(', '), outputRow); // Add Artist information
+  addCell(designerInfo.join(', '), outputRow); // Add Designer information
+  addCell(statusInfo, outputRow); // Add Status information
+  addCell(hornTraitInfo.join(', '), outputRow); 
+  addCell(whatHornTraitInfo.join(', '), outputRow); 
+  addCell(mouthTraitInfo.join(', '), outputRow); 
+  addCell(heatPitTraitInfo.join(', '), outputRow); 
+  addCell(eyeTraitInfo.join(', '), outputRow); 
+  addCell(earTraitInfo.join(', '), outputRow); 
+  addCell(feetTraitInfo.join(', '), outputRow); 
+  addCell(tailTraitInfo.join(', '), outputRow); 
+  addCell(mutationsInfo.join(', '), outputRow); 
+  addCell(addOnsInfo.join(', '), outputRow); 
+}
+
+function addCell(data, row) {
+  var cell = document.createElement('td');
+  var input = document.createElement('input');
+  input.type = 'text';
+
+  // Check if data contains a URL and is not an image URL
+  var urlRegex = /\b(?:https?:\/\/)\S+/;
+  var isImageUrl = isValidImageUrl(data); // Check if it's an image URL
+
+  if (urlRegex.test(data) && !isImageUrl) {
+    var parts = data.split(' ');
+    var url = parts.pop(); // Get the last part as URL
+    var owner = parts.join(' '); // Combine the remaining parts back into the owner's name
+
+    // Generate HTML code for the hyperlink
+    var htmlCode = '<a href="' + url + '">' + owner + '</a>';
+    input.value = htmlCode; // Set input value as HTML code
+  } else {
+    // Directly use data if it's not a URL or if it's an image URL
+    input.value = data;
+  }
+
+  cell.appendChild(input); // Append the input to the cell
+  row.appendChild(cell); // Append the cell to the row
+}
+
+
+function capitalizeWords(str) {
+  return str.replace(/\b\w/g, function(char) {
+    return char.toUpperCase();
+  });
+}
+
+function isValidImageUrl(url) {
+  var imageExtensions = /\.(jpeg|jpg|gif|png|bmp)$/i;
+  return imageExtensions.test(url);
+}
+
+function copyOutput() {
+  var outputRow = document.getElementById('outputRow');
+  var cells = outputRow.querySelectorAll('input[type="text"]');
+  var textToCopy = '';
+  cells.forEach(function(input) {
+    textToCopy += input.value + '\t'; // Separate values with tabs
+  });
+  navigator.clipboard.writeText(textToCopy.trim()); // Trim to remove extra tab at the end
+  console.log('Row copied to clipboard:', textToCopy.trim());
+}
+</script>
+</body>
+</html>
+
+  

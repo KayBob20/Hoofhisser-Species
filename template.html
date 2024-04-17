@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Test</title>
+ <link rel="stylesheet" href="website.css">
+</head>
+<body>
+<div class="banner">
+    <img src="Banner images/Smol cloud use.png" id="sky">
+    <!-- <img src="images/vectorizer 3/Smol-2 3.svg" id="cloud-2">
+    <img src="images/vectorizer 3/Smol-3 3.svg" id="cloud-1"> -->
+    <!-- <img src="images/vectorizer 3/Smol-4 3.svg" id="mountain-2"> -->
+    <img src="Banner images/Mountain use.png" id="mountain-1">
+    <img src="Banner images/Ground use.png" id="ground">
+            <a href="your-link-url" class="logo-link">
+            <img src="Banner images/Logo use.PNG" id="logo">
+          </a>
+    <!-- <img src="images/vectorizer 3/Smol-7 3.svg" id="hill"> -->
+    <img src="Banner images/Glacier use.svg" id="glacier">
+    <!-- <img src="images/Nav gradient.png" id="nav-gradient"> -->
+</div>
+
+
+<div class="sticky">
+    <div class="navbar">
+        <div class="bottom-right-corner">
+            <button id="scrollBtn" onclick="scrollToTop()">▲</button>
+            <div class="theme-button-container">
+                <button class="theme-toggle">
+                  <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-6 0 520 520"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+                  <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-40 30 454 454"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+                </button>
+            </div>
+          </div>
+          <div class="nav-links-wrapper">
+              <ul class="nav-links">
+                  <!-- Hamburger Menu Icon -->
+                  <button class="hamburger-menu">☰</button>
+                  <a href="#" class="hamburger-menu home"><h1>Hoofhissers</h1></a>
+                  <div class="nav-item-container">
+                    <li>
+                      <a href="#" class="home"><h1>Hoofhissers</h1></a>
+                    </li>
+                    <li class="center current">
+                      <a href="#" class="nav-link">Info</a>
+                      <div class="dropdown">
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Anotomy Basics</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Trait Sheet</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Mutation Anotomy</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Add-On Features</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Get on the Masterlist</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Lore</a></div>
+                      </div>
+                    </li>
+                    <li class="center">
+                      <a href="#" class="nav-link">Explore</a>
+                      <div class="dropdown">
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Masterlist</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">News</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">F2U Bases</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Currency Guide Calculator</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Partnered Species</a></div>
+                      </div>
+                    </li>
+                    <li class="center">
+                      <a href="#" class="nav-link">Shops</a>
+                      <div class="dropdown">
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Mutation Shop</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">MYO Nursery</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Bank</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Item Shop</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Pet Store</a></div>
+                      </div>
+                    </li>
+                    <li class="center">
+                      <a href="#" class="nav-link">Help</a>
+                      <div class="dropdown">
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">FAQ</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Redesign Guide</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Currency Guide</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">TOS</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Design Rules</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Newcomer Guide</a></div>
+                      </div>
+                    </li>
+                    <li class="center">
+                      <a href="#" class="nav-link">Activities</a>
+                      <div class="dropdown">
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Events</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Hisser of the Week</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">DTA</a></div>
+                        <div class="dropdown-item"><a href="#" class="dropdown-link">Monthly Prompts</a></div>
+                      </div>
+                    </li>
+                    <div class="search-container">
+                      <button class="searchbtn-decoration">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    </button>
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <button id="clearButton" class="clear-button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                    </button>
+                    <div class="autocomplete-items" id="autocompleteItems"></div>
+                  </div>
+                    </div>
+                  </ul> 
+                </div>
+              </div>
+
+    <div class="spacer">
+        <div class="grid1"></div>
+        <div class="grid2"></div>
+        <div class="grid3">
+            <div class="box1"></div>
+            <div class="box2"></div>
+        </div>
+        <div class="grid4"></div>
+    </div>
+</div>
+<div class="content-wrapper">
+<div class="content">
+<div class="homepage-grid">
+  <div class="intro-picture"></div>
+  <div class="intro-card"></div>
+  <div class="intro-text">
+    <h1>Welcome to the Hoofhisser species!</h1>
+    <br>
+    <p><i>Hoofhissers are a closed species created by <a href="http://kaybobscorner.carrd.co/" class="link">KayBob</a>.</i></p>
+    <p>What started off as regular goats turned into Hoofhissers once they were bitten by The Slithren. This caused any of their horns to turn into snakes. Many could not handle their new body changes and would die off. Luckily, some were able to survive. Now Hoofhissers are not only made by being cursed but they have their own society where, they form relationships, battle, and have their own currency.</p>
+    <p>They live in peace with their beloved, scaley, companions.</p>
+  </div>
+
+  <div class="intro-discordpic">
+    <div class="intro-discordpic-text">
+      <h2>Join the discord server to participate in the species!</h2>
+    </div>
+    <div class="intro-discord-actual-picture">
+      <img src="images/Discord pic flipped (should be good quality).png">
+    </div>
+  </div>
+  <div class="intro-discord">
+    <iframe class="discord-widget" src="https://discord.com/widget?id=806537566274191390&theme=dark" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+  </div>
+
+</div>
+</div>
+</div>
+
+<div class="main-footer">
+  <h1>Hoofhissers</h1>
+  <div class="copyright">© 2021 Hoofhissers</div>
+</div>
+<!-- Main content section -->
+<!-- <div style="height: 3000px;"></div> -->
+           <!-- Content of the page -->
+
+           <script src="script.js"></script>
+           
+</body>
+</html>

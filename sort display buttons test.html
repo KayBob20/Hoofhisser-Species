@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .sort-buttons-container {
+            display: flex;
+            background-color: antiquewhite;
+            width: 80%;
+            margin: auto;
+            margin-top: 200px;
+            justify-content: space-between;
+            padding: 10px;
+            height: max-content; /* Set a fixed height */
+        }
+        .sort-btn-contain-left {
+            width: 40%;
+            background-color: aqua;
+        }
+        .pagination {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .pagination li {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+        }
+
+        .sort-btn-contain-right {
+            width: 60%;
+            background-color: rgb(255, 133, 133);
+            display: flex;
+            justify-content: flex-end; /* Changed to flex-end */
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: flex-start; /* Added */
+            height: max-content; /* Set a fixed height */
+        }
+        .sort {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            border: none;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+<div class="sort-buttons-container">
+    <div class="sort-btn-contain-left">
+        <ul class="pagination">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+    <div class="sort-btn-contain-right">
+        <button class="sort">Sort by</button>
+        <button class="sort">Sort by</button>
+        <button class="sort">Sort by</button>
+        <button class="sort">Sort by</button>
+    </div>
+</div>
+</body>
+</html>

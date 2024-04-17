@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create and Display Hyperlink</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .input-group { margin-bottom: 10px; }
+        #htmlResult { margin-top: 10px; background-color: #f9f9f9; border: 1px solid #ccc; padding: 10px; }
+        .tooltip {
+            background-color: black;
+            color: #ffffff;
+            border: none;
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s ease-out; /* Added transform property */
+            position: absolute;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transform: translateY(-20px);
+        }
+        .tooltip.tooltip-visible {
+            opacity: 0.5;
+            transform: translateY(-24px); /* Move it back to its original position */
+        }
+    </style>
+</head>
+<body>
+    <div class="input-group">
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" placeholder="Enter Name">
+    </div>
+    <div class="input-group">
+        <label for="urlInput">URL:</label>
+        <input type="text" id="urlInput" placeholder="Enter URL">
+    </div>
+    <button id="createLink">Create Link</button>
+    <button id="reset">Reset</button>
+    <br>
+    <br>
+    <div id="result"></div>
+    <pre id="htmlResult"></pre>
+    <button class="tooltip">Copied!</button>
+    <button id="copyHtml">Copy HTML</button>
+
+    <script>
+document.getElementById('createLink').addEventListener('click', function() {
+    const nameInput = document.getElementById('nameInput');
+    const urlInput = document.getElementById('urlInput');
+    const name = nameInput.value.trim();
+    const url = urlInput.value.trim();
+    
+    if (name && url) {
+        const resultDiv = document.getElementById('result');
+        const linkHtml = `<a href="${url}" target="_blank">${name}</a>`;
+        resultDiv.innerHTML = linkHtml;
+        
+        const htmlResultDiv = document.getElementById('htmlResult');
+        htmlResultDiv.textContent = linkHtml;
+    }
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+    document.getElementById('nameInput').value = '';
+    document.getElementById('urlInput').value = '';
+    document.getElementById('result').innerHTML = '';
+    document.getElementById('htmlResult').textContent = '';
+});
+
+document.getElementById('copyHtml').addEventListener('click', function() {
+    const htmlContent = document.getElementById('htmlResult').textContent;
+    if (htmlContent) {
+        navigator.clipboard.writeText(htmlContent).then(() => {
+            const tooltip = document.querySelector('.tooltip');
+            tooltip.classList.add('tooltip-visible');
+            setTimeout(() => { tooltip.classList.remove('tooltip-visible'); }, 1500);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: 30px repeat(3, auto); /* first row height cannot be a percent, it gets weird when it is */
+        background-color: #2196F3;
+        padding: 20px;
+        max-width: 700px;
+        margin: 0 auto; /* This will horizontally center the grid container */
+    }
+    
+    .grid-container > div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 20px 20px;
+    }
+    
+    .item1 {
+        grid-area: 1 / 3 / 1 / span 5; /* row start / column start / row end / column end */
+        background-color: #fccb87;
+        border-radius: 20px 20px 0px 0px; /* top-left, top-right, bottom-right, bottom-left */
+    }
+
+    .item2 {
+        grid-area: 2 / 1 / 4 / span 6;
+        background-color: #fccb87;
+        border-radius: 20px 0px 0px 20px;
+    }
+
+    .item3 {
+        grid-area: 1 / 7 / 4 / span 3;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url('images/Miles.png'); /* Set the image as a background */
+        background-size: contain; /* Maintain aspect ratio and fit the entire image within the container */
+        background-repeat: no-repeat; /* Prevent the image from repeating */
+        background-position: center; /* Center the image within the container */
+    }
+
+    .item4 {
+        grid-area: 2 / 7 / 4 / span 3;
+        background-color: #fccb87;
+    }
+
+    </style>
+</head>
+<body>
+    
+<h1>The grid-column Property</h1>
+    
+<p>Use the <em>grid-column</em> property to specify where to place an item.</p>
+<p>Item1 will start on column 1 and end before column 5:</p>
+    
+<div class="grid-container">
+    <div class="item1"></div>
+    <div class="item2">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin gravida hendrerit lectus a. Ipsum dolor sit amet consectetur. Placerat duis ultricies lacus sed turpis tincidunt id. Convallis convallis tellus id interdum velit laoreet id donec ultrices. Aliquet enim tortor at auctor urna nunc. Donec ultrices tincidunt arcu non sodales neque. Sit amet consectetur adipiscing elit ut aliquam purus sit amet. A diam sollicitudin tempor id eu. Sagittis purus sit amet volutpat consequat. Tincidunt id aliquet risus feugiat in ante. Enim facilisis gravida neque convallis a cras semper auctor. Lacus vestibulum sed arcu non odio euismod lacinia.
+    </div>
+    <div class="item3"></div>
+    <div class="item4"></div>
+</div>
+
+</body>
+</html>

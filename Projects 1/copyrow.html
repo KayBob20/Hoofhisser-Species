@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Table</title>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    input[type=text] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .copyButton {
+        cursor: pointer;
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+</style>
+</head>
+<body>
+
+<h2>Interactive Table</h2>
+
+<table id="dataTable">
+    <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+        <th>Column 3</th>
+        <th>Copy</th>
+    </tr>
+    <tr>
+        <td><input type="text" class="rowInput"></td>
+        <td><input type="text" class="rowInput"></td>
+        <td><input type="text" class="rowInput"></td>
+        <td><button class="copyButton">Copy</button></td>
+    </tr>
+    <tr>
+        <td><input type="text" class="rowInput"></td>
+        <td><input type="text" class="rowInput"></td>
+        <td><input type="text" class="rowInput"></td>
+        <td><button class="copyButton">Copy</button></td>
+    </tr>
+    <!-- Add more rows as needed -->
+</table>
+
+<script>
+    // Function to set the value of a cell
+    function setCellValue(row, column, value) {
+        document.getElementById('row' + row + 'col' + column).value = value;
+    }
+
+    // Function to get the value of a cell
+    function getCellValue(row, column) {
+        return document.getElementById('row' + row + 'col' + column).value;
+    }
+
+    // Add event listeners to copy buttons to enable copying row contents
+    var copyButtons = document.querySelectorAll(".copyButton");
+    copyButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            var row = button.closest('tr');
+            var inputs = row.querySelectorAll('.rowInput');
+            var textToCopy = '';
+            inputs.forEach(function(input) {
+                textToCopy += input.value + '\t'; // Separate values with tabs
+            });
+            navigator.clipboard.writeText(textToCopy.trim()); // Trim to remove extra tab at the end
+            console.log('Row copied to clipboard:', textToCopy.trim());
+            event.stopPropagation(); // Prevent row click event
+        });
+    });
+</script>
+
+</body>
+</html>

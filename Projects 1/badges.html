@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badges</title>
+
+<style>
+.background {
+    background-image: url("https://plus.unsplash.com/premium_photo-1674266467222-ec27f7b815d5?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    width: 100%;
+    height: 100%;
+}
+
+.wrapper {
+    text-transform: uppercase;
+    background: #ececec32;
+    cursor: help;
+    font-family: "Gill Sans", Impact, sans-serif;
+    font-size: 15px;
+    margin-top: 100px;
+    margin-left: 100px;
+    padding: 4px;
+    position: relative;
+    text-align: center;
+    display: inline-block; /* Display as inline-block */
+    -webkit-transform: translateZ(0); /* webkit flicker fix */
+    -webkit-font-smoothing: antialiased; /* webkit text rendering fix */
+}
+
+.wrapper .tooltip {
+    background: #0000007d;
+    bottom: 100%;
+    color: #fff;
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-bottom: 15px;
+    opacity: 0;
+    padding: 20px;
+    pointer-events: none;
+    max-width: 120px; /* Optional: Limit maximum width */
+    border-radius: 10px;
+
+/* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 100%;
+        left: 40%;
+        margin-left: -60px; /* Center the tooltip text */
+
+-webkit-transform: translateY(10px);
+  -moz-transform: translateY(10px);
+  -ms-transform: translateY(10px);
+   -o-transform: translateY(10px);
+    transform: translateY(10px);
+-webkit-transition: all .25s ease-out;
+  -moz-transition: all .25s ease-out;
+  -ms-transition: all .25s ease-out;
+   -o-transition: all .25s ease-out;
+    transition: all .25s ease-out;
+}
+
+/* This bridges the gap so you can mouse into the tooltip without it disappearing */
+.wrapper .tooltip:before {
+bottom: -20px;
+content: " ";
+display: block;
+height: 20px;
+left: 0;
+position: absolute;
+width: 100%;
+}
+
+/* CSS Triangles - see Trevor's post */
+.wrapper .tooltip:after {
+border-left: solid transparent 10px;
+border-right: solid transparent 10px;
+border-top: solid #0000007d 10px;
+bottom: -10px;
+content: " ";
+height: 0;
+left: 50%;
+margin-left: -13px;
+position: absolute;
+width: 0;
+}
+
+.wrapper:hover .tooltip {
+opacity: 1;
+pointer-events: auto;
+-webkit-transform: translateY(0px);
+  -moz-transform: translateY(0px);
+  -ms-transform: translateY(0px);
+   -o-transform: translateY(0px);
+    transform: translateY(0px);
+}
+
+/* IE can just show/hide with no transition */
+.lte8 .wrapper .tooltip {
+display: none;
+}
+
+.lte8 .wrapper:hover .tooltip {
+display: block;
+}
+
+ /* Tooltip container */
+ .tooltip2 {
+        position: relative;
+        display: inline-block;
+        cursor: help; /* Add cursor pointer on hover */
+        margin: 20px;
+        background-color: #ececec32;
+    }
+
+    /* Tooltip text */
+    .tooltip2 .tooltiptext {
+        visibility: hidden; /* Hide the tooltip text by default */
+        width: 120px;
+        background-color: #00000070;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 10px;
+
+        /* Position the tooltip text */
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px; /* Center the tooltip text */
+    }
+
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip2:hover .tooltiptext {
+        visibility: visible;
+    }
+
+    .tooltip-again {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(1, auto); /* first row height cannot be a percent, it gets weird when it is */
+        background-color: #2196F3;
+        padding: 0;
+        width: 100%;
+        max-width: 160px;
+        margin: 0 auto; /* This will horizontally center the grid container */
+        z-index: 0;
+    }
+
+    .tooltip-again > div {
+        background-color: #ffffffcc;
+        text-align: center;
+        padding: 0;
+    }
+
+    .material {
+        grid-area: 1 / 2 / 1 / span 3; /* row start / column start / row end / column end */
+        background-color: #fccb87;
+        z-index: 0;
+    }
+
+    .material img {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .the-tooltip {
+        grid-area: 1 / 1 / 1 / span 5;
+        background-color: #fccb87;
+        z-index: 1;
+        transform: translateY(-40%);
+        display: flex;
+    }
+
+</style>
+
+
+</head>
+<body>
+    <div class="background">
+        <div class="wrapper">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/47550379_fIxdT3LlITmffXy.png" class="fr-fic fr-dii mx-auto tooltipster fr-fil" width="60" height="60" title="1 Year Anniversary Badge" style="min-width: 60px; max-width: 60px;">
+            <div class="tooltip">Anniverysary Badge Grr bark bark</div>
+           </div>
+    <h2>Tooltip Example 2</h2>
+<p>Move the mouse over the text below to see the tooltip:</p>
+
+<!-- Tooltip container -->
+<div class="tooltip2">
+    <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/47550379_fIxdT3LlITmffXy.png" class="fr-fic fr-dii mx-auto tooltipster fr-fil" width="60" height="60" style="min-width: 60px; max-width: 60px;">
+    bleeeheh
+    omg
+    <!-- Tooltip text -->
+    <span class="tooltiptext">1 Year Anniversary Badge</span>
+</div>
+<div class="tooltip-again">
+    <div class="material">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/47550379_fIxdT3LlITmffXy.png">
+    </div>
+    <div class="the-tooltip">
+        1 Year Anniversary Badge
+    </div>
+</div>
+
+</div>
+</body>
+</html>

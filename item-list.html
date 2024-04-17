@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Items Gallery</title>
+    <link rel="stylesheet" href="website.css">
+    <style>
+
+        :root {
+            --drop-shadow-img-smol: 6px 6px 2px #00000048;
+            --drop-shadow-img-big: 12px 16px 4px #00000048;
+        }
+
+.main-container-grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+}
+
+ .main-container {
+    width: 100%;
+    min-height: 100vh; /* Full height of the viewport */
+    display: flex; /* Ensure the main container is flex to center the child container */
+    flex-direction: column; /* Stack vertically */
+    align-items: center; /* Center-align the child container */
+
+    margin-top: var(--basic-margin);
+
+    grid-area: 1 / 2 / 1 / 20;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Creates as many columns as can fit, each at least 180px wide */
+    gap: 20px; /* Space between grid items */
+    width: 100%; /* Make sure it doesn't overflow the parent */
+}
+
+.card {
+    border: var(--thin-border);
+    background-color: var(--white);
+    text-align: center;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer; /* Add this line to make the card clickable */
+    transition: transform 0.2s; /* Add transition for smooth effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Scale up the card when hovered */
+}
+
+.card img {
+    width: 70%; /* Adjust image width to be responsive within the card */
+    height: auto;
+    margin-bottom: -10px;
+    filter: drop-shadow(var(--drop-shadow-img-smol));
+}
+
+.card h3, .card p, .card h4 {
+    margin: 5px 0;
+}
+
+.card p {
+    text-indent: 0;
+}
+
+.pagination {
+    text-align: center;
+    margin: 20px;
+}
+
+.pagination button {
+    text-decoration: none;
+    color: var(--darkest-blue);
+    margin: 0 calc(var(--basic-margin) / 4);
+
+    padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
+    background-color: var(--white);
+    border-radius: calc(var(--border-radius) / 2);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    border: var(--thin-border);
+}
+
+.pagination-buttons.active {
+    background-color: var(--light-green);
+}
+
+.pagination-buttons:hover {
+    transition-duration: var(--transition-duration);
+    background-color: var(--light-green);
+}
+
+
+.buttons {
+    margin-bottom: var(--basic-margin);
+}
+
+.item-filter-btn {
+  padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
+  background-color: var(--white);
+  border-radius: calc(var(--border-radius) / 2);
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  border: var(--thin-border);
+
+  margin-right: calc(var(--basic-margin) / 2);
+
+  transition-duration: 0;
+}
+
+.item-filter-btn:last-of-type {
+    margin-right: 0;
+}
+
+.item-filter-btn:hover {
+  background-color: var(--light-green);
+  transition-duration: var(--transition-duration);
+}
+
+.item-filter-btn.active {
+    background-color: var(--light-green);
+}
+
+        /* Modal styles */
+        .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px); /* Apply the blur effect */
+    -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
+    z-index: 0; /* Ensure it's above other content but below the modal itself */
+    opacity: 0; /* Initial opacity */
+    transition: opacity 0.2s; /* Fade transition for background */
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8); /* Initial scale, adjust as needed */
+    opacity: 0; /* Initial opacity */
+    transition: opacity 0.2s, transform 0.2s; /* Fade and scale transition for content */
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    
+    width: 60%;
+    max-width: 600px;
+}
+
+.modal-image {
+    max-width: 50%; /* Default max-width for larger screens */
+    display: block;
+    margin: auto;
+    margin-top: calc(var(--basic-margin) * 1.5);
+    filter: drop-shadow(var(--drop-shadow-img-big));
+}
+
+@media (max-width: 600px) { /* Adjusts for screens up to 600px wide */
+    .modal-image {
+        max-width: 60%; /* Increases max-width for smaller screens */
+    }
+}
+
+.modal-content.fade-in {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Full size on fade-in */
+}
+
+.modal-background.fade-in {
+    opacity: 1;
+}
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .sort-dropdown {
+            margin-bottom: 10px;
+        }
+
+.backward, .forward {
+    text-decoration: none;
+    color: var(--darkest-blue);
+    margin: 0 calc(var(--basic-margin) / 2);
+
+    padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
+    background-color: var(--white);
+    border-radius: calc(var(--border-radius) / 2);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    border: var(--thin-border);
+
+    background-color: var(--white);
+}
+
+.sort-dropdown {
+    margin-top: var(--basic-margin);
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center items vertically */
+    justify-content: center;
+}
+
+.dropdown-label {
+    display: block; /* Ensure the label takes up the full width */
+
+    color: var(--darkest-blue);
+    margin-right: calc(var(--basic-margin) / 2);
+
+    padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
+    background-color: var(--white);
+    border-radius: calc(var(--border-radius) / 2);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    border: var(--thin-border);
+}
+
+.dropdown-select {
+    appearance: none; /* Hide the default appearance */
+    -webkit-appearance: none; /* Hide the default appearance for Safari */
+    
+    color: var(--darkest-blue);
+    margin: 0 calc(var(--basic-margin) / 2);
+
+    padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
+    background-color: var(--white);
+    border-radius: calc(var(--border-radius) / 2);
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    border: var(--thin-border);
+}
+
+/* Removes the default outline when selecting an option */
+.dropdown-select:focus {
+    outline: none;
+}
+
+
+    </style>
+</head>
+<body>
+            <!-- -----------------
+        Header Start
+    ----------------- -->
+    <div id="banner-template"></div>
+
+    <div class="sticky">
+      <div class="navbar">
+          <div class="bottom-right-corner">
+              <button id="scrollBtn" onclick="scrollToTop()">▲</button>
+              <div class="theme-button-container">
+                  <button class="theme-toggle">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-6 0 520 520"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-40 30 454 454"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+                  </button>
+              </div>
+            </div>
+            <div class="nav-links-wrapper">
+                <ul class="nav-links">
+                    <!-- Hamburger Menu Icon -->
+                    <button class="hamburger-menu">☰</button>
+                    <a href="index.html" class="hamburger-menu home"><h1>Hoofhissers</h1></a>
+                    <div class="nav-item-container">
+                      <li>
+                        <a href="index.html" class="home"><h1>Hoofhissers</h1></a>
+                      </li>
+                      <li class="center">
+                        <div id="info-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="explore-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="shops-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="help-template"></div>
+                      </li>
+                      <li class="center">
+                        <div id="activities-template"></div>
+                      </li>
+                      <div class="search-container">
+                        <button class="searchbtn-decoration">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                      </button>
+                      <input type="text" id="searchInput" placeholder="Search...">
+                      <button id="clearButton" class="clear-button">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+                      </button>
+                      <div class="autocomplete-items" id="autocompleteItems"></div>
+                    </div>
+                      </div>
+                    </ul> 
+                  </div>
+                </div>
+    
+        <div class="spacer">
+            <div class="grid1"></div>
+            <div class="grid2"></div>
+            <div class="grid3">
+                <div class="box1"></div>
+                <div class="box2"></div>
+            </div>
+            <div class="grid4"></div>
+        </div>
+    </div>
+    <!-- -----------------
+        Header End
+    ----------------- -->
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="main-container-grid">
+                <div class="main-container">
+                    <div class="buttons">
+                        <button id="allBtn" class="active item-filter-btn">All</button>
+                        <button id="PotionsBtn" class="item-filter-btn">Potions</button>
+                        <button id="AddOnItemsBtn" class="item-filter-btn">Add-On Items</button>
+                        <button id="EggsBtn" class="item-filter-btn">MYO Eggs</button>
+                        <button id="ScalesBtn" class="item-filter-btn">Scales</button>
+                        <!-- Sort by price dropdown -->
+                        <div class="sort-dropdown">
+                            <label for="sortByPrice" class="dropdown-label">Sort by Price:</label>
+                            <select id="sortByPrice" class="dropdown-select">
+                                <option value="none">None</option>
+                                <option value="expensive">Most Expensive to Least Expensive</option>
+                                <option value="cheap">Least Expensive to Most Expensive</option>
+                            </select>
+                        </div>
+                        <!-- Add more buttons for additional categories -->
+                    </div>
+                    <div class="pagination" id="pagination"></div>
+                    <div class="container" id="itemsContainer"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Modal window -->
+<div id="myModal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content" id="modalContent">
+        <!-- Content will be dynamically filled -->
+        <span class="close" id="closeModal">&times;</span>
+    </div>
+</div>
+
+<div id="footer-template"></div>
+
+  <script>
+    
+        fetch('templates/banner-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('banner-template').innerHTML = html;
+    });
+
+  fetch('templates/info-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('info-template').innerHTML = html;
+    });
+
+  fetch('templates/explore-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('explore-template').innerHTML = html;
+    });
+
+    fetch('templates/shops-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('shops-template').innerHTML = html;
+    });
+    
+    fetch('templates/help-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('help-template').innerHTML = html;
+    });
+
+    fetch('templates/activities-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('activities-template').innerHTML = html;
+    });
+
+    fetch('templates/footer-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-template').innerHTML = html;
+    });
+
+//     -----------------
+//     Items Start
+// -----------------
+
+// Sample items data
+const items = [
+    { id: 1, name: "Otherwordly Scale", category: "Scales", description: "Allows you to add or remove an otherwordly trait. Can also be used to swap an otherwordly trait for another otherwordly trait.", price: "10000", imgSrc: "images/Items/Otherworldly Scale.gif" },
+    { id: 2, name: "Shop Ticket", category: "AddOnItems", description: "Allows you to buy any item that is not in the shop. (The teeth to purchase said item is required.).", price: "10000000", imgSrc: "images/Items/Shop Ticket.png" },
+    { id: 3, name: "Sharp Thorn", category: "AddOnItems", description: "Allows you to add spikes anywhere on a Hoofhisser's body.", price: "1000", imgSrc: "images/Items/Sharp Thorn.png" },
+    { id: 4, name: "Sweet Fruit", category: "AddOnItems", description: "Allows you to add a cat nose, dog nose, bat nose, or bird beak to your Hoofhisser.", price: "1500", imgSrc: "images/Items/Sweet Fruit.png" },
+    { id: 5, name: "Umbrella Leaf", category: "AddOnItems", description: "Allows you to add a cobra hood to your Hisser.", price: "800", imgSrc: "images/Items/Umbrella Leaf.png" },
+    { id: 6, name: "Sparkling Gem", category: "AddOnItems", description: "Allows you to add any horn add on to your Hoofhisser.", price: "300", imgSrc: "images/Items/Sparkling Gem.png" },
+    { id: 7, name: "Plush Potion", category: "Potions", description: "Can give a Hoofhisser plush like qualities.", price: "5000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/38736095_ua6xJzhjbMdJdVr.gif?1642772479" },
+    { id: 7, name: "Arial Potion", category: "Potions", description: "Can give a Hoofhisser any kind of wings on any part of their body.", price: "3500", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/39492660_xsm62P0N1xgs102.gif?1642772521" },
+    { id: 7, name: "Color Changing Potion", category: "Potions", description: "Can give a Hoofhisser an alternate color palette.", price: "700", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/40841901_wo2A3QMWY1kVSqe.gif?1642772503" },
+    { id: 7, name: "Form Changing Potion", category: "Potions", description: "Can give a Hoofhisser an alternate form.", price: "4000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/41110717_h4GUzT8sP9H6Z22.gif?1642772452" },
+    { id: 7, name: "Multiple Limbs Potion", category: "Potions", description: "Can give a Hoofhisser more limbs than normal.", price: "2000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/43814513_ioimeP6ZlKmtd68.gif" },
+    { id: 7, name: "Fluff Potion", category: "Potions", description: "Can add fur where there would normally be scales.", price: "2000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/43814525_frP3VaKVl242Sa1.gif" },
+    { id: 7, name: "Machine Potion", category: "Potions", description: "Can give a Hoofhisser mechanical features.", price: "5000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/43817240_D2ADaFp77hE48Fl.gif" },
+    { id: 7, name: "Delectable Potion", category: "Potions", description: "Can give a Hoofhisser edible features.", price: "5000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/43817244_2LQHzllQn1MY3p7.gif" },
+    { id: 7, name: "Astral Potion", category: "Potions", description: "Can give a Hoofhisser orbiting stars and the ability to float.", price: "4000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/47074548_bQz0RJdUmWzJI1Z.gif" },
+    { id: 7, name: "Prehistoric Potion", category: "Potions", description: "Can give ancient features to your Hoofhisser.", price: "5000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/49799159_oTQlIyUA2Y3hvsc.gif" },
+    { id: 7, name: "Geode Potion", category: "Potions", description: "Can add crystals to a Hoofhisser's body or make their body made out of crystals.", price: "2000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/49799173_Fr1uw1DJIZsVLIU.gif" },
+    { id: 7, name: "Elemental Potion", category: "Potions", description: "Can turn a Hoofhisser's body into natural elements.", price: "7000", imgSrc: "https://f2.toyhou.se/file/f2-toyhou-se/images/59579875_rdpICFo4jpCJP56.gif" },
+    { id: 7, name: "Common Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with common traits.", price: "1000", USDprice: "10", imgSrc: "images/Items/Common Egg.png" },
+    { id: 7, name: "Uncommon Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with uncommon traits and any traits with a rarity lower than uncommon.", price: "1800", USDprice: "15", imgSrc: "images/Items/Uncommon Egg.png" },
+    { id: 7, name: "Rare Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with rare traits and any traits with a rarity lower than rare.", price: "3000", USDprice: "20", imgSrc: "images/Items/Rare Egg.png" },
+    { id: 7, name: "Ultra Rare Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with ultra rare traits and any traits with a rarity lower than ultra rare.", price: "4200", USDprice: "25", imgSrc: "images/Items/Ultra Rare Egg.png" },
+    { id: 7, name: "Mythical Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with mythical traits and any traits with a rarity lower than mythical.", price: "6000", USDprice: "35", imgSrc: "images/Items/Mythical Egg.png" },
+    { id: 7, name: "Otherworldly Egg", category: "Eggs", description: "Allows you to create a Hoofhisser with otherworldly traits and any traits with a rarity lower than otherworldly.", price: "1000000", USDprice: "45", imgSrc: "images/Items/Otherworldly Egg.png" },
+
+    // { id: 4, name: "Healing Potion", category: "AddOnItems", description: "Restores health points.", price: "50", imgSrc: "images/Potion.png" },
+    // { id: 5, name: "Bow of Precision", category: "Potions", description: "A bow crafted for accuracy.", price: "110", imgSrc: "images/Bow.png" },
+    // { id: 6, name: "Mana Elixir", category: "Scales", description: "Restores magical energy.", price: "70", imgSrc: "images/Elixir.png" },
+    // { id: 7, name: "Wizard's Staff", category: "Eggs", description: "Increases magical abilities.", price: "150", imgSrc: "images/Miles.png" },
+];
+
+const itemsPerPage = 14;
+        let currentPage = 1;
+        let currentCategory = null; // Track the current category filter
+        let currentSortOrder = 'none';
+
+        function paginate(items, pageNumber, itemsPerPage) {
+            const start = (pageNumber - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            return items.slice(start, end);
+        }
+
+        function displayItems(items) {
+    const container = document.getElementById('itemsContainer');
+    container.innerHTML = ''; // Clear container
+    items.forEach(item => {
+        const card = document.createElement('div');
+        card.classList.add('card');
+
+        // Check if the item is the "Otherworldly Scale" or the "Shop Ticket"
+        if ((item.category === 'Scales' && item.name === 'Otherwordly Scale') || 
+            (item.category === 'AddOnItems' && item.name === 'Shop Ticket')) {
+            card.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>RNG</p>
+            `;
+        } 
+        // Check if the item is one of the common eggs, uncommon egg, rare egg, ultra rare egg, or mythical egg
+        else if (item.category === 'Eggs' && 
+                 (item.name === 'Common Egg' || 
+                  item.name === 'Uncommon Egg' || 
+                  item.name === 'Rare Egg' || 
+                  item.name === 'Ultra Rare Egg' || 
+                  item.name === 'Mythical Egg')) {
+            card.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>${item.price} 🦷 or ${item.USDprice}$</p>
+            `;
+        } 
+        // Check if the item is the "Otherworldly Egg"
+        else if (item.category === 'Eggs' && item.name === 'Otherworldly Egg') {
+            card.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>${item.USDprice}$</p>
+            `;
+        } 
+        // For all other items
+        else {
+            card.innerHTML = `
+                <img src="${item.imgSrc}" alt="${item.name}">
+                <h3>${item.name}</h3>
+                <p>${item.price} 🦷</p>
+            `;
+        }
+        
+        card.addEventListener('click', () => openModal(item)); // Attach click event listener
+        container.appendChild(card);
+    });
+}
+
+function setupPagination(totalItems, itemsPerPage) {
+    const pageCount = Math.ceil(totalItems / itemsPerPage);
+    const paginationContainer = document.getElementById('pagination');
+    paginationContainer.innerHTML = ''; // Clear previous pagination
+
+    // Add backward button
+    const backwardButton = document.createElement('button');
+    backwardButton.textContent = '⏴';
+    backwardButton.disabled = currentPage === 1;
+    backwardButton.addEventListener('click', () => changePage(currentPage - 1));
+    paginationContainer.appendChild(backwardButton);
+
+    // Add page buttons
+    for (let i = 1; i <= pageCount; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.classList.add('pagination-buttons'); // Add the class name "pagination-buttons"
+        if (i === currentPage) {
+            pageButton.classList.add('active');
+        }
+        pageButton.addEventListener('click', () => changePage(i));
+        paginationContainer.appendChild(pageButton);
+    }
+
+    // Add forward button
+    const forwardButton = document.createElement('button');
+    forwardButton.textContent = '⏵';
+    forwardButton.disabled = currentPage === pageCount;
+    forwardButton.addEventListener('click', () => changePage(currentPage + 1));
+    paginationContainer.appendChild(forwardButton);
+}
+
+
+
+        function changePage(pageNumber) {
+            currentPage = pageNumber;
+            let filteredItems;
+            if (currentCategory) {
+                filteredItems = items.filter(item => item.category === currentCategory);
+            } else {
+                filteredItems = items;
+            }
+            const paginatedItems = paginate(filteredItems, currentPage, itemsPerPage);
+            displayItems(paginatedItems);
+            setupPagination(filteredItems.length, itemsPerPage);
+        }
+
+        // Initial display
+        changePage(1);
+
+         // Function to sort items by price
+         function sortItemsByPrice(items, sortOrder) {
+    return items.slice().sort((a, b) => {
+        const priceA = parseFloat(a.price);
+        const priceB = parseFloat(b.price);
+
+        if (sortOrder === 'expensive') {
+            return priceB - priceA; // Sort from most expensive to least expensive
+        } else if (sortOrder === 'cheap') {
+            return priceA - priceB; // Sort from least expensive to most expensive
+        } else {
+            return 0; // No sorting
+        }
+    });
+}
+
+        // Modify displayItemsByCategory function to include sorting
+        function displayItemsByCategory(category, sortOrder) {
+            currentCategory = category;
+            let filteredItems = items.filter(item => item.category === category);
+
+            // Sort filtered items by price
+            filteredItems = sortItemsByPrice(filteredItems, sortOrder);
+
+            const paginatedItems = paginate(filteredItems, 1, itemsPerPage); // Reset page to 1
+            displayItems(paginatedItems);
+            setupPagination(filteredItems.length, itemsPerPage);
+        }
+
+ // Event listener for sort dropdown
+ document.getElementById('sortByPrice').addEventListener('change', () => {
+    const sortByPrice = document.getElementById('sortByPrice');
+    currentSortOrder = sortByPrice.value;
+
+    // Get the active category if any
+    const activeCategory = document.querySelector('.buttons button.active') ? document.querySelector('.buttons button.active').id.replace('Btn', '') : null;
+
+    // Display items based on the active category and selected sort order
+    if (activeCategory === 'Potions') {
+        displayItemsByCategory('Potions', currentSortOrder);
+    } else if (activeCategory === 'AddOnItems') {
+        displayItemsByCategory('AddOnItems', currentSortOrder);
+    } else {
+        // If no filters are applied, just sort the items
+        sortAndDisplayItems(currentSortOrder);
+    }
+});
+
+// Function to sort and display items
+function sortAndDisplayItems(sortOrder) {
+    currentPage = 1; // Reset currentPage to 1
+    let sortedItems = sortItemsByPrice(items, sortOrder);
+    const paginatedItems = paginate(sortedItems, currentPage, itemsPerPage);
+    displayItems(paginatedItems);
+    setupPagination(sortedItems.length, itemsPerPage);
+}
+
+// Modify displayItemsByCategory function to include sorting and resetting currentPage
+function displayItemsByCategory(category, sortOrder) {
+    currentPage = 1; // Reset currentPage to 1
+    currentCategory = category;
+    let filteredItems = items.filter(item => item.category === category);
+
+    // Sort filtered items by price
+    filteredItems = sortItemsByPrice(filteredItems, sortOrder || currentSortOrder);
+
+    const paginatedItems = paginate(filteredItems, 1, itemsPerPage); // Reset page to 1
+    displayItems(paginatedItems);
+    setupPagination(filteredItems.length, itemsPerPage);
+}
+
+// Function to remove active class from all buttons
+function removeActiveClassFromButtons() {
+    const buttons = document.querySelectorAll('.buttons button');
+    buttons.forEach(button => {
+        button.classList.remove('active');
+    });
+}
+
+// Event listener for "All" button
+document.getElementById('allBtn').addEventListener('click', () => {
+    removeActiveClassFromButtons(); // Remove active class from all buttons
+    document.getElementById('allBtn').classList.add('active'); // Add active class to "All" button
+
+    // If the "All" button is clicked, reset the current category filter and display all items
+    currentCategory = null;
+    currentPage = 1; // Reset currentPage to 1
+    sortAndDisplayItems(currentSortOrder);
+});
+
+// Event listener for "Potions" button
+document.getElementById('PotionsBtn').addEventListener('click', () => {
+    removeActiveClassFromButtons(); // Remove active class from all buttons
+    document.getElementById('PotionsBtn').classList.add('active'); // Add active class to "Potions" button
+
+    // Display items in the "Potions" category
+    displayItemsByCategory('Potions', currentSortOrder);
+});
+
+// Event listener for "AddOnItems" button
+document.getElementById('AddOnItemsBtn').addEventListener('click', () => {
+    removeActiveClassFromButtons(); // Remove active class from all buttons
+    document.getElementById('AddOnItemsBtn').classList.add('active'); // Add active class to "AddOnItems" button
+
+    // Display items in the "AddOnItems" category
+    displayItemsByCategory('AddOnItems', currentSortOrder);
+});
+
+    // Event listener for "Eggs" button
+    document.getElementById('EggsBtn').addEventListener('click', () => {
+        removeActiveClassFromButtons(); // Remove active class from all buttons
+        document.getElementById('EggsBtn').classList.add('active'); // Add active class to "Eggs" button
+
+        // Display items in the "Eggs" category
+        displayItemsByCategory('Eggs', currentSortOrder);
+    });
+
+    // Event listener for "Scales" button
+    document.getElementById('ScalesBtn').addEventListener('click', () => {
+        removeActiveClassFromButtons(); // Remove active class from all buttons
+        document.getElementById('ScalesBtn').classList.add('active'); // Add active class to "Scales" button
+
+        // Display items in the "Scales" category
+        displayItemsByCategory('Scales', currentSortOrder);
+    });
+
+// JavaScript code for displaying and hiding the modal
+const modal = document.getElementById("myModal");
+const modalBackground = document.querySelector(".modal-background");
+const modalContent = document.querySelector(".modal-content");
+const closeModal = document.getElementById("closeModal");
+
+// Function to open the modal and display item information
+function openModal(item) {
+    const modalContent = document.getElementById("modalContent");
+
+     // Check if the item is either the "Otherworldly Scale" or the "Shop Ticket"
+     if ((item.category === 'Scales' && item.name === 'Otherwordly Scale') || 
+        (item.category === 'AddOnItems' && item.name === 'Shop Ticket')) {
+        modalContent.innerHTML = `
+            <h1>${item.name}</h1>
+            <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
+            <hr>
+            <p>Description: ${item.description}</p>
+            <p>Only obtainable through RNG rolls.</p>
+        `;
+    } 
+        // Check if the item is one of the common eggs, uncommon egg, rare egg, ultra rare egg, or mythical egg
+        else if (item.category === 'Eggs' && 
+                 (item.name === 'Common Egg' || 
+                  item.name === 'Uncommon Egg' || 
+                  item.name === 'Rare Egg' || 
+                  item.name === 'Ultra Rare Egg' || 
+                  item.name === 'Mythical Egg')) {
+                modalContent.innerHTML = `
+            <h1>${item.name}</h1>
+            <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
+            <hr>
+            <p>Description: ${item.description}</p>
+            <p>${item.price} 🦷 or ${item.USDprice}$</p>
+            `;
+        } 
+        // Check if the item is the "Otherworldly Egg"
+        else if (item.category === 'Eggs' && item.name === 'Otherworldly Egg') {
+            modalContent.innerHTML = `
+            <h1>${item.name}</h1>
+            <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
+            <hr>
+            <p>Description: ${item.description}</p>
+                <p>Price: ${item.USDprice}$</p>
+            `;
+        } 
+        // For all other items
+        else {
+        modalContent.innerHTML = `
+            <h1>${item.name}</h1>
+            <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
+            <hr>
+            <p>Description: ${item.description}</p>
+            <p>Price: ${item.price} 🦷</p>
+        `;
+    }
+    
+    modal.style.display = "block";
+
+    setTimeout(() => {
+        modalContent.classList.add("fade-in");
+        modalBackground.classList.add("fade-in");
+    }, 50);
+}
+
+
+
+// Function to close the modal
+function closeModalHandler() {
+    modalContent.classList.remove("fade-in"); // Remove fade-in class from modal content
+    modalBackground.classList.remove("fade-in"); // Remove fade-in class from modal background
+    modalContent.classList.add("fade-out"); // Add fade-out class to hide the modal content
+    modalBackground.classList.add("fade-out"); // Add fade-out class to hide the modal background
+    setTimeout(() => {
+        modal.style.display = "none"; // Hide the modal after the transition
+        modalContent.classList.remove("fade-out"); // Remove fade-out class from the modal content
+        modalBackground.classList.remove("fade-out"); // Remove fade-out class from the modal background
+    }, 300); // Wait for the transition duration (in milliseconds)
+}
+
+// Close the modal if the user clicks anywhere outside of it
+window.onclick = function(event) {
+    if (event.target == modalBackground) {
+        closeModal.click(); // Trigger click event on the close button
+    }
+}
+
+// Close modal when close button is clicked
+closeModal.onclick = closeModalHandler;
+
+//     -----------------
+//     Items End
+// -----------------
+
+  </script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
