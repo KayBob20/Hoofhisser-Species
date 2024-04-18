@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Items Gallery</title>
+    <title>All Items List</title>
     <link rel="stylesheet" href="website.css">
     <style>
 
@@ -507,7 +507,7 @@ const itemsPerPage = 14;
             `;
         }
         
-        card.addEventListener('click', () => openModal(item)); // Attach click event listener
+        card.addEventListener('click', (event) => openModal(item, event)); // Pass the event object
         container.appendChild(card);
     });
 }
@@ -613,11 +613,19 @@ function setupPagination(totalItems, itemsPerPage) {
 // Function to sort and display items
 function sortAndDisplayItems(sortOrder) {
     currentPage = 1; // Reset currentPage to 1
-    let sortedItems = sortItemsByPrice(items, sortOrder);
+    let filteredItems;
+    if (currentCategory) {
+        filteredItems = items.filter(item => item.category === currentCategory);
+    } else {
+        filteredItems = items;
+    }
+
+    let sortedItems = sortItemsByPrice(filteredItems, sortOrder);
     const paginatedItems = paginate(sortedItems, currentPage, itemsPerPage);
     displayItems(paginatedItems);
     setupPagination(sortedItems.length, itemsPerPage);
 }
+
 
 // Modify displayItemsByCategory function to include sorting and resetting currentPage
 function displayItemsByCategory(category, sortOrder) {
@@ -695,8 +703,12 @@ const modalContent = document.querySelector(".modal-content");
 const closeModal = document.getElementById("closeModal");
 
 // Function to open the modal and display item information
-function openModal(item) {
+function openModal(item, event) {
+    // Stop propagation of the click event to prevent it from reaching the window
+    event.stopPropagation();
+
     const modalContent = document.getElementById("modalContent");
+
 
      // Check if the item is either the "Otherworldly Scale" or the "Shop Ticket"
      if ((item.category === 'Scales' && item.name === 'Otherwordly Scale') || 
@@ -768,15 +780,16 @@ function closeModalHandler() {
     }, 300); // Wait for the transition duration (in milliseconds)
 }
 
-// Close the modal if the user clicks anywhere outside of it
-window.onclick = function(event) {
+// Close the modal if the user taps anywhere outside of it
+window.ontouchstart = function(event) {
     if (event.target == modalBackground) {
         closeModal.click(); // Trigger click event on the close button
     }
 }
 
-// Close modal when close button is clicked
-closeModal.onclick = closeModalHandler;
+// Close the modal if the user clicks or taps anywhere outside of it
+window.addEventListener('click', closeModalHandler);
+window.addEventListener('touchstart', closeModalHandler);
 
 //     -----------------
 //     Items End

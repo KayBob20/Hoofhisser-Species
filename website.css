@@ -598,7 +598,7 @@
         position: absolute;
         background-color: var(--white);
         width: calc(100% - calc(var(--basic-margin) * 2));
-        transform: translateX(-16px) translateY(calc(67px - var(--border-radius))); /* translate Y should be whatever the height of navbar is minus the current border radius */
+        transform: translateX(-16px) translateY(calc(73px - var(--border-radius))); /* translate Y should be whatever the height of navbar is minus the current border radius */
         border-radius: 0 0 var(--border-radius) var(--border-radius);
         box-shadow: var(--box-shadow);
 
@@ -643,6 +643,10 @@
         outline: none;
         background: none;
         padding: calc(var(--basic-padding) / 2) calc(var(--basic-padding));
+      }
+
+      .hamburger-menu, .hamburger-menu.home {
+        z-index: 1000; /* giving it a z index just so it appears on top incase translating the search options upwards looks goofy */
       }
       
       .hamburger-menu.home {
@@ -704,8 +708,6 @@
         border-top: 8px solid transparent; /* Create the arrow shape */
         border-bottom: 8px solid transparent; /* Create the arrow shape */
         border-right: 10px solid var(--light-green); /* Create the arrow shape */
-
-        /* filter: brightness(90%); */
     }
     }
 
