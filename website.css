@@ -7,7 +7,6 @@
           box-sizing: border-box;
         }
         body {
-          height: 100%;
           background-color: var(--light-green);
           color: var(--darkest-blue);
           
@@ -95,7 +94,7 @@
       --font-size-biggest: 2rem;
 
       --blurry-box-width: 100%;
-      --max-content-width: 1000px;
+      --max-content-width: 1200px;
 
       --border-radius: 16px;
 
@@ -104,8 +103,7 @@
 
       --box-shadow: 0 5px 10px -3px #00000044;
 
-      --bg-image: url(images/Bg\ short.png);
-      --bg-image-smol: url(images/Bg\ tall.png);
+      --bg-image: url(images/Bg\ tall.png);
 
       --thin-border: solid 1px var(--transparent-black);
     }
@@ -120,7 +118,6 @@
       --darkest-blue: #ffffff;
 
       --bg-image: url(https://images.unsplash.com/photo-1623228676065-7d44db19768b?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
-      --bg-image-smol: url(https://images.unsplash.com/photo-1623228676065-7d44db19768b?q=80&w=2187&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 
       --transparent-black: var(--light-green);
       --thin-border: solid 1px var(--light-green);
@@ -145,7 +142,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
-   height: 24vh; /* this will set the height for the smallest screen size, go to the media queries for other heights */
+   height: 20vh; /* this will set the height for the smallest screen size, go to the media queries for other heights */
    overflow: hidden; /* Ensure content inside is cropped */
    z-index: 1000; /* Increased z-index to ensure it's above all other content */
    border-radius: var(--border-radius);
@@ -228,21 +225,21 @@
     height: 100%;
 }
 @media only screen and (min-width: 640px) {
-    .banner { height: 26vh; }
+    .banner { height: 24vh; }
     #ground {margin-bottom: -50px;}
     #mountain-1 {margin-bottom: -80px;}
     #mountain-2 {margin-bottom: -100px;}
     #hill {margin-bottom: -20px;}
     #cloud-1 {margin-bottom: -100px;}}
 @media only screen and (min-width: 768px) {
-    .banner { height: 34vh; }
+    .banner { height: 28vh; }
     #ground {margin-bottom: -100px;}
     #mountain-1 {margin-bottom: -190px;}
     #mountain-2 {margin-bottom: -180px;}
     #hill {margin-bottom: -30px;}
     #cloud-1 {margin-bottom: -150px;}}
 @media only screen and (min-width: 1024px) {
-    .banner { height: 40vh; }
+    .banner { height: 32vh; }
     #ground {margin-bottom: -140px;}
     #mountain-1 {margin-bottom: -320px;}
     #mountain-2 {margin-bottom: -280px;}
@@ -250,7 +247,7 @@
     #cloud-1 {margin-bottom: -250px;}
     #cloud-2 {margin-bottom: -350px;}}
 @media only screen and (min-width: 1280px) {
-    .banner { height: 44vh; }
+    .banner { height: 36vh; }
     #ground {margin-bottom: -180px;}
     #mountain-1 {margin-bottom: -360px;}
     #mountain-2 {margin-bottom: -330px;}
@@ -713,47 +710,28 @@
     }
 
     body {
-
-      --background-size-haha: 100vw;
-
         background-image: var(--bg-image);
-        background-attachment: fixed;
-        background-size: var(--background-size-haha);
+        background-attachment: scroll;
+        background-repeat: repeat;
+        background-size: cover;
     }
 
-    .box1, .grid2, .grid1, .nav-links-wrapper {
-        background-image: var(--bg-image);
-        background-size: var(--background-size-haha);
-  }
+    .body-fixed-img {
+        background-image: url(images/Gradient_Wjust_Nav.png);
+        background-size: 100% 100%; /* Stretch the background image to cover the entire div */
+        background-repeat: no-repeat; /* Prevent the background image from repeating */
+        background-position: center; /* Center the background image */
 
-  .box2, .grid4 {
-        background-image: var(--bg-image);
-        background-position: top right;
-        background-size: var(--background-size-haha);
-}
-
-    @media (max-width: 800px) {
-
-      body {
-
-        --background-size-smol: 100vw;
-  
-          background-image: var(--bg-image-smol);
-          background-attachment: fixed;
-          background-size: var(--background-size-smol);
-      }
-  
-      .box1, .grid2, .grid1, .nav-links-wrapper {
-          background-image: var(--bg-image-smol);
-          background-size: var(--background-size-smol);
+        position: fixed;
+        z-index: -1;
+        height: 480px; /* should be the same as the image we're using's height */
+        width: 100%;
     }
-  
-    .box2, .grid4 {
-          background-image: var(--bg-image-smol);
-          background-position: right;
-          background-size: var(--background-size-smol);
+
+    .box1, .grid2, .grid1, .nav-links-wrapper, .box2, .grid4 {
+        background-color: #beeaf0;
   }
-      }
+
     .sticky {
         position: sticky;
         top: 0;

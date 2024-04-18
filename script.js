@@ -6,28 +6,28 @@
 function updatePositions() {
   const stickyTop = document.querySelector('.sticky').getBoundingClientRect().top;
 
-  // Check if the top position of the sticky element is at the top of the viewport
-  if (stickyTop === 0) {
-      // If sticky top equals 0, set background attachment to fixed for the specified elements
-      document.querySelector('.spacer').style.backgroundAttachment = 'fixed';
-      document.querySelector('.box1').style.backgroundAttachment = 'fixed';
-      document.querySelector('.box2').style.backgroundAttachment = 'fixed';
-      document.querySelector('.grid1').style.backgroundAttachment = 'fixed';
-      document.querySelector('.grid2').style.backgroundAttachment = 'fixed';
-      document.querySelector('.grid4').style.backgroundAttachment = 'fixed';
-      document.querySelector('.sticky').style.backgroundAttachment = 'fixed';
-      document.querySelector('.nav-links-wrapper').style.backgroundAttachment = 'fixed';
-  } else {
-      // If sticky top does not equal 0, reset background attachment to default for the specified elements
-      document.querySelector('.spacer').style.backgroundAttachment = 'scroll';
-      document.querySelector('.box1').style.backgroundAttachment = 'scroll';
-      document.querySelector('.box2').style.backgroundAttachment = 'scroll';
-      document.querySelector('.grid1').style.backgroundAttachment = 'scroll';
-      document.querySelector('.grid2').style.backgroundAttachment = 'scroll';
-      document.querySelector('.grid4').style.backgroundAttachment = 'scroll';
-      document.querySelector('.sticky').style.backgroundAttachment = 'scroll';
-      document.querySelector('.nav-links-wrapper').style.backgroundAttachment = 'scroll';
-  }
+//   // Check if the top position of the sticky element is at the top of the viewport
+//   if (stickyTop === 0) {
+//       // If sticky top equals 0, set background attachment to fixed for the specified elements
+//       document.querySelector('.spacer').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.box1').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.box2').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.grid1').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.grid2').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.grid4').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.sticky').style.backgroundAttachment = 'fixed';
+//       document.querySelector('.nav-links-wrapper').style.backgroundAttachment = 'fixed';
+//   } else {
+//       // If sticky top does not equal 0, reset background attachment to default for the specified elements
+//       document.querySelector('.spacer').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.box1').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.box2').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.grid1').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.grid2').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.grid4').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.sticky').style.backgroundAttachment = 'scroll';
+//       document.querySelector('.nav-links-wrapper').style.backgroundAttachment = 'scroll';
+//   }
 
   const scrolled = window.pageYOffset;
   const backgroundPositionY = -20 - scrolled * 0.2; // Adjust translation speed as needed
