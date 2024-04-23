@@ -31,7 +31,7 @@
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* Creates as many columns as can fit, each at least 180px wide */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Creates as many columns as can fit, each at least 180px wide */
     gap: 20px; /* Space between grid items */
     width: 100%; /* Make sure it doesn't overflow the parent */
 }
@@ -43,11 +43,12 @@
     border-radius: 20px;
     padding: 10px;
     cursor: pointer; /* Add this line to make the card clickable */
-    transition: transform 0.2s; /* Add transition for smooth effect */
+    transition-duration: var(--transition-duration);
 }
 
 .card:hover {
     transform: scale(1.05); /* Scale up the card when hovered */
+    transition-duration: var(--transition-duration);
 }
 
 .card img {
@@ -257,8 +258,15 @@
     outline: none;
 }
 
+.modal-content .fa-solid {
+    transform: translateX(calc(var(--font-size) * -1)); /* need this because the before pseudo class creates weird spacing in the modal window only */
+}
+
 
     </style>
+
+<script src="https://kit.fontawesome.com/32d833c43a.js" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="body-fixed-img"></div>
@@ -420,6 +428,11 @@
 // Sample items data
 const items = [
     { id: 1, name: "Otherwordly Scale", category: "Scales", description: "Allows you to add or remove an otherwordly trait. Can also be used to swap an otherwordly trait for another otherwordly trait.", price: "10000", imgSrc: "images/Items/Otherworldly Scale.gif" },
+    { id: 1, name: "Common Scale", category: "Scales", description: "Allows you to add or remove a common trait. Can also be used to swap a common trait for another common trait.", price: "300", imgSrc: "images/Items/Common Scale.png" },
+    { id: 1, name: "Uncommon Scale", category: "Scales", description: "Allows you to add or remove an uncommon trait. Can also be used to swap an uncommon trait for another uncommon trait.", price: "600", imgSrc: "images/Items/Uncommon Scale.png" },
+    { id: 1, name: "Rare Scale", category: "Scales", description: "Allows you to add or remove a rare trait. Can also be used to swap a rare trait for another rare trait.", price: "1000", imgSrc: "images/Items/Rare Scale.png" },
+    { id: 1, name: "Ultra Rare Scale", category: "Scales", description: "Allows you to add or remove an ultra rare trait. Can also be used to swap an ultra rare trait for another ultra rare trait.", price: "1500", imgSrc: "images/Items/Ultra Rare Scale.png" },
+    { id: 1, name: "Mythical Scale", category: "Scales", description: "Allows you to add or remove a mythical trait. Can also be used to swap a mythical trait for another mythical trait.", price: "2000", imgSrc: "images/Items/Mythical Scale.png" },
     { id: 2, name: "Shop Ticket", category: "AddOnItems", description: "Allows you to buy any item that is not in the shop. (The teeth to purchase said item is required.).", price: "10000000", imgSrc: "images/Items/Shop Ticket.png" },
     { id: 3, name: "Sharp Thorn", category: "AddOnItems", description: "Allows you to add spikes anywhere on a Hoofhisser's body.", price: "1000", imgSrc: "images/Items/Sharp Thorn.png" },
     { id: 4, name: "Sweet Fruit", category: "AddOnItems", description: "Allows you to add a cat nose, dog nose, bat nose, or bird beak to your Hoofhisser.", price: "1500", imgSrc: "images/Items/Sweet Fruit.png" },
@@ -450,7 +463,10 @@ const items = [
     // { id: 7, name: "Wizard's Staff", category: "Eggs", description: "Increases magical abilities.", price: "150", imgSrc: "images/Miles.png" },
 ];
 
-const itemsPerPage = 14;
+items.sort((a, b) => a.name.localeCompare(b.name));
+// Sorts all items alphabetically all the time ^
+
+const itemsPerPage = 15;
         let currentPage = 1;
         let currentCategory = null; // Track the current category filter
         let currentSortOrder = 'none';
@@ -487,7 +503,7 @@ const itemsPerPage = 14;
             card.innerHTML = `
                 <img src="${item.imgSrc}" alt="${item.name}">
                 <h3>${item.name}</h3>
-                <p>${item.price} 🦷 or ${item.USDprice}$</p>
+                <p>${item.price} <i class="fa-solid fa-tooth"></i> or ${item.USDprice} <i class="fa-solid fa-dollar-sign"></i></p>
             `;
         } 
         // Check if the item is the "Otherworldly Egg"
@@ -495,7 +511,7 @@ const itemsPerPage = 14;
             card.innerHTML = `
                 <img src="${item.imgSrc}" alt="${item.name}">
                 <h3>${item.name}</h3>
-                <p>${item.USDprice}$</p>
+                <p>${item.USDprice} <i class="fa-solid fa-dollar-sign"></i></p>
             `;
         } 
         // For all other items
@@ -503,7 +519,7 @@ const itemsPerPage = 14;
             card.innerHTML = `
                 <img src="${item.imgSrc}" alt="${item.name}">
                 <h3>${item.name}</h3>
-                <p>${item.price} 🦷</p>
+                <p>${item.price} <i class="fa-solid fa-tooth"></i></p>
             `;
         }
         
@@ -718,6 +734,7 @@ function openModal(item, event) {
             <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
             <hr>
             <p>Description: ${item.description}</p>
+            <br>
             <p>Only obtainable through RNG rolls.</p>
         `;
     } 
@@ -733,7 +750,8 @@ function openModal(item, event) {
             <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
             <hr>
             <p>Description: ${item.description}</p>
-            <p>${item.price} 🦷 or ${item.USDprice}$</p>
+            <br>
+            <p>Price: ${item.price} <i class="fa-solid fa-tooth"></i>or ${item.USDprice} <i class="fa-solid fa-dollar-sign"></i></p>
             `;
         } 
         // Check if the item is the "Otherworldly Egg"
@@ -743,7 +761,8 @@ function openModal(item, event) {
             <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
             <hr>
             <p>Description: ${item.description}</p>
-                <p>Price: ${item.USDprice}$</p>
+            <br>
+                <p>Price: ${item.USDprice} <i class="fa-solid fa-dollar-sign"></i></p>
             `;
         } 
         // For all other items
@@ -753,7 +772,8 @@ function openModal(item, event) {
             <img class="modal-image" src="${item.imgSrc}" alt="${item.name}">
             <hr>
             <p>Description: ${item.description}</p>
-            <p>Price: ${item.price} 🦷</p>
+            <br>
+            <p>Price: ${item.price} <i class="fa-solid fa-tooth"></i></p>
         `;
     }
     
@@ -780,15 +800,15 @@ function closeModalHandler() {
     }, 300); // Wait for the transition duration (in milliseconds)
 }
 
-// Close the modal if the user taps anywhere outside of it
-window.ontouchstart = function(event) {
-    if (event.target == modalBackground) {
-        closeModal.click(); // Trigger click event on the close button
+// Close the modal if the user clicks anywhere outside of it
+document.addEventListener('click', function(event) {
+    if (event.target === modalBackground) {
+        closeModalHandler(); // Close the modal
     }
-}
+});
+
 
 // Close the modal if the user clicks or taps anywhere outside of it
-window.addEventListener('click', closeModalHandler);
 window.addEventListener('touchstart', closeModalHandler);
 
 //     -----------------

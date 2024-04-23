@@ -16,6 +16,8 @@
             font-style: normal;
 
             letter-spacing: 1px;
+
+            line-height: var(--line-height);
         }
 
         /* Font for headers and titles */
@@ -32,6 +34,13 @@
 
         p {
           text-indent: var(--font-size);
+        }
+
+        p.subtitle {
+          color: var(--transparent-black-darker);
+          font-style: italic;
+          text-indent: 0;
+          /* font-weight: 400; */
         }
 
         a.link {
@@ -85,7 +94,8 @@
       --dark-blue: #04748C;
       --darkest-blue: #012746;
 
-      --transparent-black: #01274619;
+      --transparent-black: #01274629;
+      --transparent-black-darker: #01274680;
       
       --transition-duration: 0.3s;
 
@@ -94,12 +104,13 @@
       --font-size-biggest: 2rem;
 
       --blurry-box-width: 100%;
-      --max-content-width: 1200px;
+      --max-content-width: 1100px;
 
       --border-radius: 16px;
-
       --basic-margin: 14px;
       --basic-padding: 16px;
+
+      --line-height: 1.7;
 
       --box-shadow: 0 5px 10px -3px #00000044;
 
@@ -107,6 +118,16 @@
 
       --thin-border: solid 1px var(--transparent-black);
     }
+
+      /* Media query for screen widths smaller than 600px */
+      @media screen and (max-width: 601px) {
+        :root {
+          --border-radius: 12px;
+          --basic-margin: 10px;
+          --basic-padding: 12px;
+          --line-height: 1.5;
+        }
+      }
     
     .dark-mode {
       --transparent-white: #0000004d;
@@ -431,16 +452,22 @@
           border-radius: calc(var(--border-radius) / 2);
           overflow: hidden; /* Hide overflowing content */
           transition-duration: 0.2s;
-          display: none;
+          /* display: none; */
+          opacity: 0;
+          transform: translateY(-10px);
           pointer-events: none;
           box-shadow: var(--box-shadow);
 
-          border: var(--thin-border);
+          outline: var(--thin-border);
+          transition-duration: var(--transition-duration);
         }
         .nav-links li:hover .dropdown {
           transition-duration: var(--transition-duration);
-          display: block;
+          /* display: block; */
           pointer-events: all;
+
+          transform: translateY(0px);
+          opacity: 1;
         }
         .dropdown-item {
           border-bottom: 1px solid var(--transparent-black);
@@ -526,7 +553,7 @@
     overflow: hidden;
     box-shadow: var(--box-shadow);
 
-    border: var(--thin-border);
+    outline: var(--thin-border);
 
     display: none;
     }
@@ -554,10 +581,13 @@
       letter-spacing: inherit;
 
       color: var(--darkest-blue);
+
+      transition-duration: var(--transition-duration);
     }
     
     .suggestions-btn:hover {
       background-color: var(--light-green);
+      transition-duration: var(--transition-duration);
     }
 
     .searchbtn-decoration { /* had to put it in a button so it wouldn't resive whenever the x button shows up */
@@ -598,7 +628,9 @@
         position: absolute;
         background-color: var(--white);
         width: calc(100% - calc(var(--basic-margin) * 2));
-        transform: translateX(-16px) translateY(calc(73px - var(--border-radius))); /* translate Y should be whatever the height of navbar is minus the current border radius */
+        transform: translateX(-16px) translateY(calc(calc(73px - var(--border-radius)) - 10px)); /* translate Y should be whatever the height of navbar is minus the current border radius */
+        /* the same transform needs to be repeated for ".visible" */
+        /* the -10px is what it looks like before its in the final position, shouldnt be included in ".visible" */
         border-radius: 0 0 var(--border-radius) var(--border-radius);
         box-shadow: var(--box-shadow);
 
@@ -606,6 +638,10 @@
 
         display: grid;
         grid-template-columns: 1fr;
+
+        transition-duration: calc(var(--transition-duration) / 1.5);
+
+        opacity: 0;
       }
           
       .autocomplete-items {
@@ -617,8 +653,6 @@
         transform: translateY(var(--basic-padding)) translateX(var(--basic-padding));
         
         width: calc(var(--font-size) * 7);
-
-        /* background-color: #00ABC3; */
       }
     
       .search-container {
@@ -667,6 +701,11 @@
 
       .visible {
         padding-bottom: calc(var(--basic-padding) * 1.5); /* this gives us that extra bit of room at the bottom to move things in the right place */
+        opacity: 1;
+        
+        transform: translateX(-16px) translateY(calc(73px - var(--border-radius)));
+
+        transition-duration: calc(var(--transition-duration) / 1.5);
       }
     
       .nav-item-container.visible .center {
@@ -684,6 +723,12 @@
         left: 100%;
         /* display: grid; */
         overflow: visible;
+
+        transform: translateX(-10px);
+      }
+
+      .nav-links li:hover .dropdown {
+        transform: translateY(0px);
       }
 
       /* Apply border radius to the first item */
@@ -900,5 +945,81 @@
 }
 
 .main-footer div {
+  color: var(--main-blue);
+}
+
+/* -------------- */
+.body-grid {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+
+  /* gap: var(--basic-margin); */
+}
+
+.body-grid > * {
+  /* background-color: #dd6f6f6b; */
+  border-radius: var(--border-radius);
+}
+
+@media only screen and (max-width: 600px) {
+  .body-grid {
+  grid-template-columns: calc(var(--basic-margin) / 1) repeat(18, 1fr) calc(var(--basic-margin) / 1);
+}
+}
+
+.body-text {
+  padding: calc(var(--basic-padding) * 2);
+}
+
+.body-img {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: #028eb5;
+
+  transition-duration: var(--transition-duration);
+}
+
+.body-img img {
+  width: calc(100%);
+
+  /* background-color: #0127463b; */
+  cursor: pointer;
+  padding: calc(var(--basic-padding) * 1);
+  transition-duration: var(--transition-duration);
+}
+
+.img-hyperlink {
+  width: fit-content;
+  display: inline-block;
+  text-indent: 0 !important;
+}
+
+.paragraph-mimic {
+  text-indent: var(--font-size) !important;
+}
+
+.body-img img:hover {
+  transform: scale(1.01);
+  transition-duration: var(--transition-duration);
+  filter: drop-shadow(4px 4px 2px #00000020);
+}
+
+.body-img:hover {
+  transition-duration: var(--transition-duration);
+
+  color: #016aa3;
+
+  font-weight: 450;
+}
+
+
+.body-card {
+  background-color: var(--white);
+  outline: var(--thin-border);
+  border-radius: var(--border-radius);
+}
+
+.fa-solid {
   color: var(--main-blue);
 }

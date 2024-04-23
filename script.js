@@ -168,6 +168,7 @@ window.scrollTo({
         const suggestions = [
           { label: "Home", words: ["start", "homepage"], href: "home.html" },
           { label: "FAQ", words: ["help", "question"], href: "faq.html" },
+          { label: "Anatomy Basics", words: ["body", "draw"], href: "anatomy-basics.html" },
           { label: "Complete Item List", words: ["item", "scale", "myo egg"], href: "item-list.html" }
         ];
     
@@ -213,7 +214,7 @@ window.scrollTo({
             // If the input value is not empty, delay hiding the autocomplete dropdown to allow click event processing
             setTimeout(() => {
               autocompleteItems.style.display = 'none';
-            }, 150);
+            }, 160);
             
             // Clear the input value when it loses focus
             this.value = '';

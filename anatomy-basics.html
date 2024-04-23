@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomy Basics</title>
+ <link rel="stylesheet" href="website.css">
+
+ <style>
+    .body-grid {
+        grid-template-rows: 
+        /* 1 */ auto
+        /* 2 */ auto
+        /* 3 */ auto
+        /* 4 */ auto
+        /* 5 */ auto
+        /* 6 */ auto
+        /* 7 */ auto
+        ;
+    }
+    /* 1st card */
+    .body-grid > *:nth-child(1) {
+        grid-area: 1 / 3 / 1 / 19;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: var(--basic-margin);
+    }
+    .text-anatomy-basics {flex: 7;}
+    .anatomy-basics-img {flex: 6;}
+
+    .anatomy-basics-img img {padding-left: 0;}
+
+    /* 2nd section */
+    .body-grid > *:nth-child(2) {
+        grid-area: 2 / 2 / 2 / 20;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: var(--basic-margin);
+    }
+    .left-bending-anatomy {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      margin-right: var(--basic-margin);
+    }
+    .sidenote {
+      display: flex;
+      flex-grow: 1;
+      margin-bottom: var(--basic-margin);
+    }
+    .right-bending-anatomy {
+      flex: 3;
+      display: flex; 
+    }
+    .ponies img {
+      padding-top: 0;
+    }
+    /* 3rd section mouth anatomy */
+    .body-grid > *:nth-child(3) {
+        grid-area: 3 / 2 / 3 / 20;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: calc(var(--basic-margin) * 3);
+    }
+    .mouff {
+      flex: 4;
+      margin-right: var(--basic-margin);
+      display: flex;
+    }
+    .mouf-anatomy {
+      flex: 4;
+    }
+    /* 4th section mouf cont. */
+    .body-grid > *:nth-child(4) {
+        grid-area: 4 / 2 / 4 / 20;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: var(--basic-margin);
+    }
+
+    .swallow-text {
+      flex: 6;
+      margin-right: var(--basic-margin);
+    }
+    .swallow-img {
+      flex: 4;
+      display: flex;
+    }
+     /* 5th section heatpits */
+    .body-grid > *:nth-child(5) {
+        grid-area: 5 / 3 / 5 / 19;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: calc(var(--basic-margin) * 3);
+    }
+    .heatpit-img {
+      flex: 6;
+    }
+    .heatpit-img img {
+      padding-right: 0;
+    }
+    .heatpit-text {
+      flex: 5;
+    }
+    /* skull */
+    .body-grid > *:nth-child(6) {
+        grid-area: 6 / 2 / 6 / 20;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: calc(var(--basic-margin) * 3);
+    }
+    .skull-text {
+      flex: 3;
+      margin-right: var(--basic-margin);
+    }
+    .skull-img {
+      flex: 2;
+      display: flex;
+    }
+       /* height chart */
+    .body-grid > *:nth-child(7) {
+        grid-area: 7 / 3 / 7 / 19;
+        margin-top: calc(var(--basic-margin) * 3);
+    }
+    .height-img img {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+    .height-text {
+      padding-bottom: 0;
+    }
+    .height-desc-text {
+      padding-top: 0;
+    }
+       /* life stages */
+       .body-grid > *:nth-child(8) {
+        grid-area: 8 / 2 / 8 / 20;
+        margin-top: calc(var(--basic-margin) * 3);
+        display: flex;
+    }
+
+    .eggiss-img {
+      flex: 4;
+      display: flex;
+      margin-right: var(--basic-margin);
+    }
+    .life-cycle-content {
+      flex: 6;
+    }
+
+    .egg-hiss {
+      display: flex;
+      margin-top: var(--basic-margin);
+    }
+    .egg-text {
+      flex: 3;
+      margin-right: var(--basic-margin);
+    }
+    .hissling-text {
+      flex: 4;
+    }
+
+        /* hooflet */
+        .body-grid > *:nth-child(9) {
+        grid-area: 9 / 2 / 9 / 20;
+        display: flex;
+        box-sizing: border-box;
+        margin-top: var(--basic-margin);
+    }
+    .hooflet-img {
+      flex: 7;
+      margin-left: var(--basic-margin);
+    }
+    .hooflet-text {
+      flex: 8;
+    }
+
+        /* final stage */
+        .body-grid > *:nth-child(10) {
+        grid-area: 10 / 3 / 10 / 19;
+        box-sizing: border-box;
+        margin-top: var(--basic-margin);
+    }
+    .hoofhisser-img img {
+      width: 70% !important;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    .modal {
+        opacity: 0;
+        pointer-events: none; /* Disable mouse events when hidden */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        transition-duration: var(--transition-duration);
+    }
+
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background-color: var(--white);
+        
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        transition-duration: var(--transition-duration);
+    }
+
+        .modal-img {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: block;
+            margin: var(--basic-margin) auto;
+
+            transform: scale(0.98);
+        }
+
+        .modal.show {
+        opacity: 1;
+        pointer-events: auto; /* Enable mouse events when shown */
+    }
+
+    .modal-content.show {
+        transform: translate(-50%, -50%) scale(1); /* Full scale */
+    }
+
+    .fa-check {
+        color: var(--main-blue);
+    }
+    .fa-xmark {
+        color: rgb(254, 61, 61) !important;
+    }
+ </style>
+
+<script src="https://kit.fontawesome.com/32d833c43a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="body-fixed-img"></div>
+  <!-- -----------------
+Header Start
+----------------- -->
+<div id="banner-template"></div>
+
+<div class="sticky">
+<div class="navbar">
+<div class="bottom-right-corner">
+    <button id="scrollBtn" onclick="scrollToTop()">▲</button>
+    <div class="theme-button-container">
+        <button class="theme-toggle">
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-6 0 520 520"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-40 30 454 454"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
+        </button>
+    </div>
+  </div>
+  <div class="nav-links-wrapper">
+      <ul class="nav-links">
+          <!-- Hamburger Menu Icon -->
+          <button class="hamburger-menu">☰</button>
+          <a href="index.html" class="hamburger-menu home"><h1>Hoofhissers</h1></a>
+          <div class="nav-item-container">
+            <li>
+              <a href="index.html" class="home"><h1>Hoofhissers</h1></a>
+            </li>
+            <li class="center current">
+              <div id="info-template"></div>
+            </li>
+            <li class="center">
+              <div id="explore-template"></div>
+            </li>
+            <li class="center">
+              <div id="shops-template"></div>
+            </li>
+            <li class="center">
+              <div id="help-template"></div>
+            </li>
+            <li class="center">
+              <div id="activities-template"></div>
+            </li>
+            <div class="search-container">
+              <button class="searchbtn-decoration">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+            <input type="text" id="searchInput" placeholder="Search...">
+            <button id="clearButton" class="clear-button">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
+            </button>
+            <div class="autocomplete-items" id="autocompleteItems"></div>
+          </div>
+            </div>
+          </ul> 
+        </div>
+      </div>
+
+<div class="spacer">
+  <div class="grid1"></div>
+  <div class="grid2"></div>
+  <div class="grid3">
+      <div class="box1"></div>
+      <div class="box2"></div>
+  </div>
+  <div class="grid4"></div>
+</div>
+</div>
+<!-- -----------------
+Header End
+----------------- -->
+
+<div class="content-wrapper">
+  <div class="content">
+    <div class="body-grid">
+      <!-- ----------------- -->
+      <div class="body-card">
+        
+          <div class="body-text text-anatomy-basics">
+            <h1>Anatomy Basics</h1>
+            <hr>
+            <p class="subtitle">Click on the images for a larger preview.</p>
+            <br>
+            <p>A Hisser's front legs have three joints: the elbow, knee, and fetlock. Their legs follow caprine anatomy. All feet traits must have this anatomy, <i>unless it has a mutation</i>, even traits like the 'paw' trait.</p>
+            <br>
+            <p>For anatomy that a cat would have, you must have the wacky limbs mutation in order to achieve this.</p>
+            <p class="subtitle">*Refer to the animation below for how their legs bend</p>
+          </div>
+      
+      <div class="body-img anatomy-basics-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54613953_I0gMZvhVtNqqZBh.png">
+    </div>
+  </div>
+  <div>
+    <div class="left-bending-anatomy">
+      <div class="body-card sidenote">
+        <div class="body-text">
+          <h3><i class="fa-solid fa-circle-exclamation"></i> Notice</h3>
+          <br>
+          <p>The limbs can be stylized in several different ways. Do not worry about being unable to draw them. The legs are just a guide for how they would look in real life.</p>
+        </div>
+      </div>
+      <div class="body-card">
+        <div class="body-img">
+          <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54584245_EnYOnaifncae7uA.gif">
+            </div>
+      </div>
+    </div>
+    <div class="right-bending-anatomy">
+      <div class="body-card">
+        <div class="body-text">
+          <p>There are several cartoons that stylize caprine esq limbs. Any depictions such as these are a perfect fit for Hoofhissers!</p>
+        </div>
+        <div class="body-img ponies">
+          <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54650108_3BRwUx0BafyuO9S.png">
+            </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="body-card mouff">
+      <div class="body-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54651197_cMWC8rFDUBPuUBb.png">
+          </div>
+    </div>
+    <div class="body-card mouf-anatomy">
+      <div class="body-text">
+        <h1>Mouth Anatomy</h1>
+        <hr>
+        <p>A Hoofhisser's mouth is very similar to that of a snake's. Hoofhisser's have fang sheaths, retractable fangs, forked tongues, and a glottis. The glottis is essential for eating prey because it can take up to a few hours to swallow large prey.</p>
+        <p>The tongue can be stylized to not come from a tongue sheath.</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="body-card swallow-text">
+      <div class="body-text">
+        <h3><i class="fa-solid fa-circle-exclamation"></i> Eating Habits</h3>
+        <br>
+        <p>Unlike regular goats, Hoofhissers can unhinge their jaws to swallow prey whole.</p>
+        <p>As obligate carnivores, Hissers will spend every few days finding a large meal to eat. They never shy away from prey even when the prey is bigger than themselves. While digesting particularly large prey, Hoofhissers move slower and are more vulnerable to attacks from other Hissers. The larger the prey, the more time a Hoofhisser has until it must eat again.</p>
+        <p>They can go for about a week in between meals.</p>
+      </div>
+    </div>
+    <div class="body-card swallow-img">
+      <div class="body-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54584298_9biMn4iW4msyurG.png?1662737533">
+          </div>
+    </div>
+  </div>
+  <div class="body-card">
+      <div class="body-img heatpit-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54632236_3fetBChbEXARByk.png">
+          </div>
+    <div class="body-text heatpit-text">
+      <h1>Heat Pits</h1>
+      <hr>
+      <p>All Hoofhissers have heat pits like snakes do. These pits give them infared vision which makes hunting at night easier. They can have up to three or four heat pits.</p>
+      <br>
+      <p><i class="fa-solid fa-check"></i> Heat pits can be located from the nostrils to the eyes or along the mouth.</p>
+      <p><i class="fa-solid fa-xmark"></i> Heat pits cannot be placed on the cheek.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="body-card skull-text">
+      <div class="body-text">
+        <h1>Skull Structure</h1>
+        <hr>
+        <p>Hoofhisser skulls differ from regular goat skulls in various ways.</p>
+        <p>The main head has a split jaw like that of a regular snake.</p>
+        <p>At the base of the horns is a tough horn that curves around the snake. It serves to protect the Hisser's snakes while they ram into things.</p>
+        <p>The snakes horns are have most of their mobility towrads their heads and they lose mobility the closer the get towards the base of the main head's skull.</p>
+      </div>
+    </div>
+    <div class="body-card skull-img">
+      <div class="body-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54670056_qDBQwq0L58EdV20.png">
+          </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="body-card">
+      <div class="body-text height-text">
+        <h1>Average Height</h1>
+        <hr>
+      </div>
+      <div class="body-img height-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54638948_8DhjnjUO6MhfdXs.png">
+          </div>
+        <div class="body-text height-desc-text">
+          <p>Hoofhisser's are measured at the shoulder, or "withers", like regular goats. They can range from 6'1" (73in / 185.42cm) tall to 3'8" (44in / 111.76cm).</p>
+        </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="body-card eggiss-img">
+      <div class="body-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54668676_EVtRWdTpGec3GcJ.png">
+          </div>
+    </div>
+    <div class="life-cycle-content">
+      <div class="body-card life-stages-title">
+        <div class="body-text">
+          <h1>Life Stages</h1>
+          <hr>
+          <p>A Hoofhisser will go through four main stages in its life:</p>
+        </div>
+      </div>
+      <div class="egg-hiss">
+        <div class="body-card egg-text">
+          <div class="body-text">
+            <h2>Egg</h2>
+            <hr>
+            <p>They first start in an egg.</p>
+            <p>They can lay up to three eggs in one clutch.</p>
+          </div>
+        </div>
+        <div class="body-card hissling-text">
+          <div class="body-text">
+            <h2>Hissling</h2>
+            <hr>
+            <p>The Hissling stage is the most akin to real snakes.</p>
+            <p>Depending on the horn trait, this stage can have several different heads. Each head has a brain along with another brain within the "chest" area. This section will grow into its own head later in life.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div>
+  <div class="body-card hooflet-text">
+    <div class="body-text">
+      <h2>Hooflet</h2>
+      <hr>
+      <p>Their middle stage of life is their most vulnerable.</p>
+      <p>Their scales shed and fur replaces it. The main head begins to form; a mouth has not formed quite yet.</p>
+      <p>As they get used to their new legs they walk very clumsily and cannot move well. Most dont survive past this stage.</p>
+    </div>
+  </div>
+  <div class="body-card hooflet-img">
+    <div class="body-img">
+      <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54771429_mUmCQGQ7TWbrAm0.png">
+        </div>
+  </div>
+</div>
+
+<div>
+  <div class="body-card">
+    <div class="body-text">
+      <h2>Hoofhisser</h2>
+      <hr>
+      <p>Their legs and fur have fully grown in now. At their final stage they have full control of their new bodies.</p>
+      <br>
+      <p>The challenging feat in making it past the Hooflet stage dives them to prove their strength by fighting other Hoothissers.</p>
+    </div>
+      <div class="body-img hoofhisser-img">
+        <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/54772193_Ye9OsajbJqkrB08.png">
+      </div>
+  </div>
+</div>
+        <!-- ----------------- -->
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <img src="" alt="" class="modal-img">
+    </div>
+</div>
+<div id="footer-template"></div>
+
+<script>
+  fetch('templates/banner-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('banner-template').innerHTML = html;
+    });
+
+    fetch('templates/info-nav-template.html')
+  .then(response => response.text())
+  .then(html => {
+    // Create a temporary container element
+    const tempContainer = document.createElement('div');
+    tempContainer.innerHTML = html;
+
+    // Find all elements with the ID "Info" inside the fetched HTML
+    const elementsWithInfoId = tempContainer.querySelectorAll('#Anatomy-Basics');
+
+    // Add the desired class to each element found
+    elementsWithInfoId.forEach(element => {
+      element.classList.add('dropdown-current');
+    });
+
+    // Insert the modified HTML into the main document
+    document.getElementById('info-template').appendChild(tempContainer);
+  });
+
+  fetch('templates/explore-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('explore-template').innerHTML = html;
+    });
+
+    fetch('templates/shops-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('shops-template').innerHTML = html;
+    });
+    
+    fetch('templates/help-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('help-template').innerHTML = html;
+    });
+
+    fetch('templates/activities-nav-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('activities-template').innerHTML = html;
+    });
+
+    fetch('templates/footer-template.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('footer-template').innerHTML = html;
+    });
+
+    // Get the modal and image elements
+    var modal = document.getElementById('modal');
+    var modalImg = modal.querySelector('.modal-img');
+
+    // Get all body-img elements
+    var bodyImgs = document.querySelectorAll('.body-img');
+
+    // Loop through each body-img element to add click event listener
+    bodyImgs.forEach(function(bodyImg) {
+        bodyImg.addEventListener('click', function() {
+            // Get the image source
+            var imgSrc = this.querySelector('img').getAttribute('src');
+
+            // Set the image source in the modal
+            modalImg.setAttribute('src', imgSrc);
+
+            // Show the modal
+            modal.classList.add('show');
+            modal.querySelector('.modal-content').classList.add('show');
+        });
+    });
+
+    // Close the modal when clicking outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.classList.remove('show');
+            modal.querySelector('.modal-content').classList.remove('show');
+        }
+    });
+</script>
+
+<script src="script.js"></script>
+           
+</body>
+</html>

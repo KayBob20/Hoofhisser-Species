@@ -10,26 +10,17 @@
     Home Start
 ----------------- */
 
-.homepage-grid {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
+.body-grid {
   grid-template-rows: 
-  var(--basic-margin)
-  auto
+  var(--basic-padding)
   auto 
+  minmax(350px, auto)
   var(--basic-margin)
   auto;
-
-  /* gap: var(--basic-margin); */
-}
-
-.homepage-grid > * {
-  /* background-color: #dd6f6f6b; */
-  border-radius: var(--border-radius);
 }
 
 .intro-picture {
-  grid-area: 1 / 11 / 4 / 21;
+  grid-area: 1 / 11 / 5 / 21;
   background-image: url(https://f2.toyhou.se/file/f2-toyhou-se/images/64244762_eW6IR1ayF1IFd0t.png);
   background-size: contain;
   background-repeat: no-repeat;
@@ -46,13 +37,11 @@
 
 .intro-text {
   grid-area: 2 / 2 / 3 / 12;
-  padding: calc(var(--basic-padding) * 2);
   padding-bottom: 0;
 }
 
 .intro-text-body {
   grid-area: 3 / 2 / 4 / 12;
-  padding: calc(var(--basic-padding) * 2);
   padding-top: var(--font-size);
 }
 
@@ -99,9 +88,20 @@
   border-radius: calc(var(--border-radius) / 2);
 }
 
-@media only screen and (max-width: 800px) {
-  .intro-picture {
-  grid-area: 1 / 9 / 3 / 21;
+@media only screen and (max-width: 900px) {
+  .body-grid {
+  grid-template-rows: 
+  var(--basic-margin)
+  minmax(400px, auto)
+  auto
+  var(--basic-margin)
+  auto;
+
+  /* gap: var(--basic-margin); */
+}
+  
+.intro-picture {
+  grid-area: 1 / 10 / 3 / 21;
   height: 105%;
 }
 
@@ -120,6 +120,44 @@
 .intro-text-body {
   grid-area: 3 / 2 / 4 / 20;
 }
+}
+
+@media only screen and (max-width: 600px) {
+  .body-grid {
+  grid-template-rows: 
+  var(--basic-margin)
+  auto
+  300px
+  auto
+  var(--basic-margin)
+  auto
+  var(--basic-margin)
+  400px;
+}
+  
+.intro-picture {grid-area: 3 / 1 / 3 / 21;}
+
+.intro-card {grid-area: 2 / 2 / 5 / 20;}
+
+.intro-text {
+  grid-area: 2 / 2 / 2 / 20;
+  text-align: center;
+  min-height: 0; /* gotta put this to reset the height in the previous media query */
+}
+
+.intro-text p {text-indent: 0;}
+
+.intro-text-body {
+  grid-area: 4 / 2 / 4 / 20;
+  text-align: justify;
+}
+
+.intro-discordpic {
+  grid-area: 6 / 2 / 6 / 20;
+  margin-right: 0;
+}
+
+.intro-discord {grid-area: 8 / 2 / 8 / 20;}
 }
 /* -----------------
     Home End
@@ -200,20 +238,22 @@
     ----------------- -->
 <div class="content-wrapper">
 <div class="content">
-<div class="homepage-grid">
+<div class="body-grid">
   <div class="intro-picture"></div>
   <div class="intro-card"></div>
   <div class="intro-text">
-    
-      <h1>Welcome to the Hoofhisser species!</h1>
-        <br>
-    <p><i>Hoofhissers are a closed species created by <a href="http://kaybobscorner.carrd.co/" class="link">KayBob</a>.</i></p>
+      <div class="body-text">
+        <h1>Welcome to the Hoofhisser species!</h1>
+          <br>
+            <p><i>Hoofhissers are a closed species created by <a href="http://kaybobscorner.carrd.co/" class="link">KayBob</a>.</i></p>
+      </div>
     </div>
     <div class="intro-text-body">
-    <p>What started off as regular goats turned into Hoofhissers once they were bitten by The Slithren. This caused any of their horns to turn into snakes. Many could not handle their new body changes and would die off. Luckily, some were able to survive. Now Hoofhissers are not only made by being cursed but they have their own society where, they form relationships, battle, and have their own currency.</p>
-    <p>They live in peace with their beloved, scaley, companions.</p>
+    <div class="body-text">
+      <p>What started off as regular goats turned into Hoofhissers once they were bitten by The Slithren. This caused any of their horns to turn into snakes. Many could not handle their new body changes and would die off. Luckily, some were able to survive. Now Hoofhissers are not only made by being cursed but they have their own society where, they form relationships, battle, and have their own currency.</p>
+      <p>They live in peace with their beloved, scaley, companions.</p>
     </div>
-  
+    </div>
 
   <div class="intro-discordpic">
     <div class="intro-discordpic-text">
