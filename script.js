@@ -179,49 +179,50 @@ window.scrollTo({
         searchInput.addEventListener('input', function() {
           const inputValue = this.value.toLowerCase();
           autocompleteItems.innerHTML = '';
-    
+      
           const matches = suggestions.filter(suggestion =>
-            suggestion.label.toLowerCase().includes(inputValue) || suggestion.words.some(word => word.toLowerCase().includes(inputValue))
+              suggestion.label.toLowerCase().includes(inputValue) || suggestion.words.some(word => word.toLowerCase().includes(inputValue))
           );
-    
-          matches.forEach(suggestion => {
-            const item = document.createElement('div');
-            item.innerHTML = `<a href="${suggestion.href}" class="btn-link"><button class="suggestions-btn">${suggestion.label}</button></a>`;
-            autocompleteItems.appendChild(item);
+      
+          // Set the maximum number of suggestions to display
+          const maxSuggestions = 5; // Adjust this number as needed
+      
+          matches.slice(0, maxSuggestions).forEach(suggestion => {
+              const item = document.createElement('div');
+              item.innerHTML = `<a href="${suggestion.href}" class="btn-link"><button class="suggestions-btn">${suggestion.label}</button></a>`;
+              autocompleteItems.appendChild(item);
           });
-    
-          autocompleteItems.style.display = matches.length && inputValue !== '' ? 'block' : 'none';
-          
+      
+          // Update opacity based on matches
+          autocompleteItems.style.opacity = matches.length && inputValue !== '' ? 1 : 0;
+      
           // Show the clear button if the input field is not empty, otherwise hide it
-          if (inputValue.trim() !== "") {
-              clearButton.style.display = "block";
-          } else {
-              clearButton.style.display = "none";
-          }
-        });
-    
-        searchInput.addEventListener('focus', function() {
+          clearButton.style.opacity = inputValue.trim() !== "" ? 1 : 0;
+      });
+      
+      searchInput.addEventListener('focus', function() {
           if (searchInput.value !== '') {
-            autocompleteItems.style.display = 'block';
+              autocompleteItems.style.opacity = 1;
           }
-        });
-    
-        searchInput.addEventListener('blur', function() {
+      });
+      
+      searchInput.addEventListener('blur', function() {
           if (searchInput.value === '') {
-            // If the input value is empty, hide the autocomplete dropdown immediately
-            autocompleteItems.style.display = 'none';
+              // If the input value is empty, hide the autocomplete dropdown immediately
+              autocompleteItems.style.opacity = 0;
           } else {
-            // If the input value is not empty, delay hiding the autocomplete dropdown to allow click event processing
-            setTimeout(() => {
-              autocompleteItems.style.display = 'none';
-            }, 160);
-            
-            // Clear the input value when it loses focus
-            this.value = '';
-            // Hide the clear button
-            clearButton.style.display = 'none';
+              // If the input value is not empty, delay hiding the autocomplete dropdown to allow click event processing
+              setTimeout(() => {
+                  autocompleteItems.style.opacity = 0;
+              }, 0);
+      
+              // Clear the input value when it loses focus
+              this.value = '';
+              // Hide the clear button
+              clearButton.style.opacity = 0;
           }
-        });
+      });
+      
     
         // -----------------
         // Search End

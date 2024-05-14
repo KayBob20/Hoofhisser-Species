@@ -807,9 +807,13 @@ document.addEventListener('click', function(event) {
     }
 });
 
-
-// Close the modal if the user clicks or taps anywhere outside of it
-window.addEventListener('touchstart', closeModalHandler);
+// Close the modal if the user taps or clicks anywhere outside of it
+document.addEventListener('touchstart', function(event) {
+    // Check if the touch event target is the modal or its content
+    if (!modalContent.contains(event.target) && !modal.contains(event.target)) {
+        closeModalHandler(); // Close the modal
+    }
+});
 
 //     -----------------
 //     Items End

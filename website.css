@@ -555,7 +555,9 @@
 
     outline: var(--thin-border);
 
-    display: none;
+    /* display: none; */
+    opacity: 0;
+    transition-duration: var(--transition-duration);
     }
     
     .btn-link {
@@ -909,7 +911,7 @@
 
       cursor: pointer;
 
-      display: none;
+      opacity: 0;
   }
 
   .clear-svg {
