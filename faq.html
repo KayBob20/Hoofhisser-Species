@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta general="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,318 +10,369 @@
         /* -----------------
     FAQ Start
 ----------------- */
-:root {
-  --glacier-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46567024_mPG74NbT0BGHObl.png);
-  --seamus-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47027082_yyOUw9V918HMUdn.png);
-  --hearth-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46868968_bq9ZRDtg2W8asyb.png);
-  --hampton-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46853785_tosEkj63ZTRIE2p.png);
-  --pool-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47025531_jJ9yoHyH4X5dZxX.png);
-  --evergreen-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47025586_Hu4b91nApOgE9Tz.png);
-}
-#test-list {
-  display: flex;
-  flex-direction: column;
-  grid-area: 1 / 2 / 1 / 20;
-  margin-top: var(--basic-margin);
-}
-
-.faq-grid {
-  display: grid;
-  grid-template-columns: repeat(20, 1fr);
-}
-
-.faq-text p {
-  text-indent: var(--font-size);
-}
-
-.list {
-  padding: 0;
-  width: 100%;
-  margin: auto;
-}
-.faq-list::before {
-  content: "• ";
-}
-.faq-list {
-  text-indent: 0 !important;
-  margin-left: calc(var(--font-size) * 1.5);
-}
-
-.list {
-  list-style-type: none;
-}
-
-.sort-buttons-container {
-  display: flex;
-  width: 100%;
-  margin: auto;
-  justify-content: space-between;
-  height: max-content; /* Set a fixed height */
-}
-.sort-btn-contain-left {
-  width: 30%;
-}
-.pagination {
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--basic-margin) / 2);
-}
-.pagination li {
-  list-style-type: none;
-  padding: calc(var(--basic-padding) / 2); /* HEIGHT */
-  background-color: var(--white);
-  border-radius: calc(var(--border-radius) / 2);
-  
-  font: inherit;
-
-  outline: var(--thin-border);
-  cursor: pointer;
-
-  transition-duration: var(--transition-duration);
-}
-
-.page {
-  list-style-type: none;
-  text-decoration: none;
-  color: inherit;
-  
-  margin: calc(var(--basic-padding) / 1.5); /* WIDTH */
-}
-
-.pagination li:hover {
-  background-color: var(--light-green);
-  transition-duration: var(--transition-duration);
-}
-
-  /* Highlight the current page */
-.active {
-  background-color: var(--light-green) !important;
-}
-
-.sort-btn-contain-right {
-  width: 70%;
-  display: flex;
-  justify-content: flex-end;
-  flex-wrap: wrap;
-  gap: calc(var(--basic-margin) / 2);
-  align-items: flex-start;
-  height: max-content; /* Set a fixed height */
-}
-.sort {
-  padding: calc(var(--basic-padding) / 2) var(--basic-padding); /* first number needs to be half of padding */
-  background-color: var(--white);
-  border-radius: calc(var(--border-radius) / 2);
-  border: none;
-  font: inherit;
-  cursor: pointer;
-  outline: var(--thin-border);
-
-  transition-duration: var(--transition-duration);
-}
-
-.sort:hover {
-  background-color: var(--light-green);
-  transition-duration: var(--transition-duration);
-}
-
-.all {
-display: flex;
-background-color: var(--white);
-border-radius: var(--border-radius);
-padding: calc(var(--basic-padding) * 1.5);
-min-height: 200px; /* needs to be set the same is the max width for all last child */
-margin-top: var(--basic-margin);
-outline: var(--thin-border);
-}
-
-.all > :first-child {
-flex-basis: 500px;
-flex-grow: 1;
-}
-.all > :last-child {
-flex-basis: 16%; /* Default flex basis */
-min-width: 70px; /* Minimum width */
-max-width: 120px; /* Maximum width */
-}
-
-.faq-text {
-padding-right: calc(var(--basic-padding) * 1.5);
-}
-
-.teeth {background-color: rgb(246, 253, 255);}
-.egg {background-color: rgb(255, 249, 252);}
-.item {background-color: rgb(253, 255, 250);}
-.mutation {background-color: rgb(247, 255, 247);}
-.pet {background-color: rgb(255, 251, 246);}
-
-.glacier-talk-sprite, .seamus-talk-sprite, .hearth-talk-sprite, .pool-talk-sprite, .evergreen-talk-sprite, .hampton-talk-sprite {
-background-size: 100%;
-background-repeat: no-repeat;}
-
-.glacier-talk-sprite {background-image: var(--glacier-talk-sprite);}
-.seamus-talk-sprite {background-image: var(--seamus-talk-sprite);}
-.hearth-talk-sprite {background-image: var(--hearth-talk-sprite);}
-.pool-talk-sprite {background-image: var(--pool-talk-sprite);}
-.evergreen-talk-sprite {background-image: var(--evergreen-talk-sprite);}
-.hampton-talk-sprite {background-image: var(--hampton-talk-sprite);}
-
-.search-container-faq {
-
---searchbar-max-width: 500px;
-
-position: relative;
-
-max-width: 500px;
-min-width: 300px;
-
-width: 40%;
-background-color: var(--light-green);
-display: flex;
-align-items: center;
-padding: calc(var(--basic-padding) / 4) var(--basic-padding);
-border-radius: calc(var(--border-radius) * 2);
-box-sizing: border-box;
-
-margin: auto;
-}
-
-.search-container-faq {
-  margin-top: var(--basic-margin);
-}
-
-.faq-title {
-    background-color: var(--white);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--basic-margin);
-}
-
-.search {
-padding: calc(var(--basic-padding) / 2);
-font-size: var(--font-size);
-border: none;
-outline: none;
-width: 100%;
-background-color: rgba(255, 255, 255, 0); /* transparent */
-color: var(--darkest-blue);
-
-font-family: "Catamaran", sans-serif;
-font-weight: 300;
-letter-spacing: 1px;
-}
-
-.search::placeholder {
-color: var(--main-blue);
-
-font-family: "Catamaran", sans-serif;
-font-weight: 300;
-letter-spacing: 1px;
-}
-
-.searchbtn-decoration-faq { /* had to put it in a button so it wouldn't resive whenever the x button shows up */
-background: none;
-border: none;
-}
-
-.feather-search {
-height: 24px;
-fill: none;
-stroke: var(--main-blue); /* Main color */
-stroke-width: 4;
-
-
-display: flex;
-align-items: center; /* Vertically center the content */
-justify-content: center; /* Horizontally center the content */
-}
-
-.clear-button-faq {
-border: none;
-background: none;
-height: 24px;
-
-cursor: pointer;
-
-display: none;
-}
-
-.clear-svg {
-height: 100%;
-fill: var(--main-blue);
-display: flex;
-align-items: center; /* Vertically center the content */
-justify-content: center; /* Horizontally center the content */
-}
-
-.faq-title {
-    padding: calc(var(--basic-padding) * 1.5);
-    outline: var(--thin-border);
-}
-
-/* -----------------
+        
+         :root {
+            --glacier-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46567024_mPG74NbT0BGHObl.png);
+            --seamus-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47027082_yyOUw9V918HMUdn.png);
+            --hearth-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46868968_bq9ZRDtg2W8asyb.png);
+            --hampton-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/46853785_tosEkj63ZTRIE2p.png);
+            --pool-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47025531_jJ9yoHyH4X5dZxX.png);
+            --evergreen-talk-sprite: url(https://f2.toyhou.se/file/f2-toyhou-se/images/47025586_Hu4b91nApOgE9Tz.png);
+        }
+        
+        #test-list {
+            display: flex;
+            flex-direction: column;
+            grid-area: 1 / 2 / 1 / 20;
+            margin-top: var(--basic-margin);
+        }
+        
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(20, 1fr);
+        }
+        
+        .faq-text p {
+            text-indent: var(--font-size);
+        }
+        
+        .list {
+            padding: 0;
+            width: 100%;
+            margin: auto;
+        }
+        
+        .faq-list::before {
+            content: "• ";
+        }
+        
+        .faq-list {
+            text-indent: 0 !important;
+            margin-left: calc(var(--font-size) * 1.5);
+        }
+        
+        .list {
+            list-style-type: none;
+        }
+        
+        .sort-buttons-container {
+            display: flex;
+            width: 100%;
+            margin: auto;
+            justify-content: space-between;
+            height: max-content;
+            /* Set a fixed height */
+        }
+        
+        .sort-btn-contain-left {
+            width: 30%;
+        }
+        
+        .pagination {
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: calc(var(--basic-margin) / 2);
+        }
+        
+        .pagination li {
+            list-style-type: none;
+            padding: calc(var(--basic-padding) / 2);
+            /* HEIGHT */
+            background-color: var(--white);
+            border-radius: calc(var(--border-radius) / 2);
+            font: inherit;
+            outline: var(--thin-border);
+            cursor: pointer;
+            transition-duration: var(--transition-duration);
+        }
+        
+        .page {
+            list-style-type: none;
+            text-decoration: none;
+            color: inherit;
+            margin: calc(var(--basic-padding) / 1.5);
+            /* WIDTH */
+        }
+        
+        .pagination li:hover {
+            background-color: var(--light-green);
+            transition-duration: var(--transition-duration);
+        }
+        /* Highlight the current page */
+        
+        .active {
+            background-color: var(--light-green) !important;
+        }
+        
+        .sort-btn-contain-right {
+            width: 70%;
+            display: flex;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: calc(var(--basic-margin) / 2);
+            align-items: flex-start;
+            height: max-content;
+            /* Set a fixed height */
+        }
+        
+        .sort {
+            padding: calc(var(--basic-padding) / 2) var(--basic-padding);
+            /* first number needs to be half of padding */
+            background-color: var(--white);
+            border-radius: calc(var(--border-radius) / 2);
+            border: none;
+            font: inherit;
+            cursor: pointer;
+            outline: var(--thin-border);
+            color: var(--darkest-blue);
+            transition-duration: var(--transition-duration);
+        }
+        
+        .sort:hover {
+            background-color: var(--light-green);
+            transition-duration: var(--transition-duration);
+        }
+        
+        .all {
+            display: flex;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: calc(var(--basic-padding) * 1.5);
+            min-height: 200px;
+            /* needs to be set the same is the max width for all last child */
+            margin-top: var(--basic-margin);
+            outline: var(--thin-border);
+        }
+        
+        .all> :first-child {
+            flex-basis: 500px;
+            flex-grow: 1;
+        }
+        
+        .all> :last-child {
+            flex-basis: 16%;
+            /* Default flex basis */
+            min-width: 70px;
+            /* Minimum width */
+            max-width: 120px;
+            /* Maximum width */
+        }
+        
+        .faq-text {
+            padding-right: calc(var(--basic-padding) * 1.5);
+        }
+        
+        .teeth {
+            background-color: var(--teeth-box-fill);
+        }
+        
+        .egg {
+            background-color: var(--egg-box-fill);
+        }
+        
+        .item {
+            background-color: var(--item-box-fill);
+        }
+        
+        .mutation {
+            background-color: var(--mutation-box-fill);
+        }
+        
+        .pet {
+            background-color: var(--pet-box-fill);
+        }
+        
+        .glacier-talk-sprite,
+        .seamus-talk-sprite,
+        .hearth-talk-sprite,
+        .pool-talk-sprite,
+        .evergreen-talk-sprite,
+        .hampton-talk-sprite {
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+        
+        .glacier-talk-sprite {
+            background-image: var(--glacier-talk-sprite);
+        }
+        
+        .seamus-talk-sprite {
+            background-image: var(--seamus-talk-sprite);
+        }
+        
+        .hearth-talk-sprite {
+            background-image: var(--hearth-talk-sprite);
+        }
+        
+        .pool-talk-sprite {
+            background-image: var(--pool-talk-sprite);
+        }
+        
+        .evergreen-talk-sprite {
+            background-image: var(--evergreen-talk-sprite);
+        }
+        
+        .hampton-talk-sprite {
+            background-image: var(--hampton-talk-sprite);
+        }
+        
+        .search-container-faq {
+            --searchbar-max-width: 500px;
+            position: relative;
+            max-width: 500px;
+            min-width: 300px;
+            width: 40%;
+            background-color: var(--light-green);
+            display: flex;
+            align-items: center;
+            padding: calc(var(--basic-padding) / 4) var(--basic-padding);
+            border-radius: calc(var(--border-radius) * 2);
+            box-sizing: border-box;
+            margin: auto;
+        }
+        
+        .search-container-faq {
+            margin-top: var(--basic-margin);
+        }
+        
+        .faq-title {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            margin-bottom: var(--basic-margin);
+        }
+        
+        .search {
+            padding: calc(var(--basic-padding) / 2);
+            font-size: var(--font-size);
+            border: none;
+            outline: none;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0);
+            /* transparent */
+            color: var(--darkest-blue);
+            font-family: "Catamaran", sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .search::placeholder {
+            color: var(--main-blue);
+            font-family: "Catamaran", sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .searchbtn-decoration-faq {
+            /* had to put it in a button so it wouldn't resive whenever the x button shows up */
+            background: none;
+            border: none;
+        }
+        
+        .feather-search {
+            height: 24px;
+            fill: none;
+            stroke: var(--main-blue);
+            /* Main color */
+            stroke-width: 4;
+            display: flex;
+            align-items: center;
+            /* Vertically center the content */
+            justify-content: center;
+            /* Horizontally center the content */
+        }
+        
+        .clear-button-faq {
+            border: none;
+            background: none;
+            height: 24px;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .clear-svg {
+            height: 100%;
+            fill: var(--main-blue);
+            display: flex;
+            align-items: center;
+            /* Vertically center the content */
+            justify-content: center;
+            /* Horizontally center the content */
+        }
+        
+        .faq-title {
+            padding: calc(var(--basic-padding) * 1.5);
+            outline: var(--thin-border);
+        }
+        /* -----------------
     FAQ End
 ----------------- */
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
 </head>
+
 <body>
     <div class="body-fixed-img"></div>
-        <!-- -----------------
+    <!-- -----------------
         Header Start
     ----------------- -->
     <div id="banner-template"></div>
 
     <div class="sticky">
-      <div class="navbar">
-          <div class="bottom-right-corner">
-              <button id="scrollBtn" onclick="scrollToTop()">▲</button>
-              <div class="theme-button-container">
-                  <button class="theme-toggle">
+        <div class="navbar">
+            <div class="bottom-right-corner">
+                <button id="scrollBtn" onclick="scrollToTop()">▲</button>
+                <div class="theme-button-container">
+                    <button class="theme-toggle">
                     <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-6 0 520 520"><path d="M361.5 1.2c5 2.1 8.6 6.6 9.6 11.9L391 121l107.9 19.8c5.3 1 9.8 4.6 11.9 9.6s1.5 10.7-1.6 15.2L446.9 256l62.3 90.3c3.1 4.5 3.7 10.2 1.6 15.2s-6.6 8.6-11.9 9.6L391 391 371.1 498.9c-1 5.3-4.6 9.8-9.6 11.9s-10.7 1.5-15.2-1.6L256 446.9l-90.3 62.3c-4.5 3.1-10.2 3.7-15.2 1.6s-8.6-6.6-9.6-11.9L121 391 13.1 371.1c-5.3-1-9.8-4.6-11.9-9.6s-1.5-10.7 1.6-15.2L65.1 256 2.8 165.7c-3.1-4.5-3.7-10.2-1.6-15.2s6.6-8.6 11.9-9.6L121 121 140.9 13.1c1-5.3 4.6-9.8 9.6-11.9s10.7-1.5 15.2 1.6L256 65.1 346.3 2.8c4.5-3.1 10.2-3.7 15.2-1.6zM160 256a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zm224 0a128 128 0 1 0 -256 0 128 128 0 1 0 256 0z"/></svg>
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="-40 30 454 454"><path d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z"/></svg>
                   </button>
-              </div>
+                </div>
             </div>
             <div class="nav-links-wrapper">
                 <ul class="nav-links">
                     <!-- Hamburger Menu Icon -->
                     <button class="hamburger-menu">☰</button>
-                    <a href="index.html" class="hamburger-menu home"><h1>Hoofhissers</h1></a>
+                    <a href="index.html" class="hamburger-menu home">
+                        <h1>Hoofhissers</h1>
+                    </a>
                     <div class="nav-item-container">
-                      <li>
-                        <a href="index.html" class="home"><h1>Hoofhissers</h1></a>
-                      </li>
-                      <li class="center">
-                        <div id="info-template"></div>
-                      </li>
-                      <li class="center">
-                        <div id="explore-template"></div>
-                      </li>
-                      <li class="center">
-                        <div id="shops-template"></div>
-                      </li>
-                      <li class="center current">
-                        <div id="help-template"></div>
-                      </li>
-                      <li class="center">
-                        <div id="activities-template"></div>
-                      </li>
-                      <div class="search-container">
-                        <button class="searchbtn-decoration">
+                        <li>
+                            <a href="index.html" class="home">
+                                <h1>Hoofhissers</h1>
+                            </a>
+                        </li>
+                        <li class="center">
+                            <div id="info-template"></div>
+                        </li>
+                        <li class="center">
+                            <div id="explore-template"></div>
+                        </li>
+                        <li class="center">
+                            <div id="shops-template"></div>
+                        </li>
+                        <li class="center current">
+                            <div id="help-template"></div>
+                        </li>
+                        <li class="center">
+                            <div id="activities-template"></div>
+                        </li>
+                        <div class="search-container">
+                            <button class="searchbtn-decoration">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                       </button>
-                      <input type="text" id="searchInput" placeholder="Search...">
-                      <button id="clearButton" class="clear-button">
+                            <input type="text" id="searchInput" placeholder="Search...">
+                            <button id="clearButton" class="clear-button">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                       </button>
-                      <div class="autocomplete-items" id="autocompleteItems"></div>
+                            <div class="autocomplete-items" id="autocompleteItems"></div>
+                        </div>
                     </div>
-                      </div>
-                    </ul> 
-                  </div>
-                </div>
-    
+                </ul>
+            </div>
+        </div>
+
         <div class="spacer">
             <div class="grid1"></div>
             <div class="grid2"></div>
@@ -335,376 +387,388 @@ justify-content: center; /* Horizontally center the content */
         Header End
     ----------------- -->
 
-  <div class="content-wrapper">
-      <div class="content">
-          <div class="faq-grid">
-              <div id="test-list">
+    <div class="content-wrapper">
+        <div class="content">
+            <div class="faq-grid">
+                <div id="test-list">
 
-                <div class="faq-title">
-                    <h1>F.A.Q.</h1>
-                    <hr>
-                    <p>Here you can find our most frequently asked questions. Use the sorting buttons below to sort by specific questions.</p>
-                    <div class="search-container-faq">
-                        <button class="searchbtn-decoration-faq">
+                    <div class="faq-title">
+                        <h1>F.A.Q.</h1>
+                        <hr>
+                        <p>Here you can find our most frequently asked questions. Use the sorting buttons below to sort by specific questions.</p>
+                        <div class="search-container-faq">
+                            <button class="searchbtn-decoration-faq">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
                       </button>
-                      <input type="text" class="search" placeholder="Search...">
-                      <button id="clearButtonFAQ" class="clear-button-faq">
+                            <input type="text" class="search" placeholder="Search...">
+                            <button id="clearButtonFAQ" class="clear-button-faq">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" class="clear-svg"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/></svg>
                       </button>
-                    </div>
-                </div>
-      
-                <div class="sort-buttons-container">
-                    <div class="sort-btn-contain-left">
-                        <ul class="pagination"></ul>
-                    </div>
-                    <div class="sort-btn-contain-right">
-                        <button class="sort" data-sort="general">General</button>
-                        <button class="sort" data-sort="teeth">Species Currency</button>
-                        <button class="sort" data-sort="egg">MYO</button>
-                        <button class="sort" data-sort="item">Items</button>
-                        <button class="sort" data-sort="mutation">Mutations</button>
-                        <button class="sort" data-sort="pet">Pet</button>
-                        <button class="sort" data-sort="all">All</button>
-                    </div>
-                </div>
-                <ul class="list">
-                  <li>
-                    <div class="general all">
-                        <div class="faq-text">
-                        <h2>What is the Hisser of the Week?</h2>
-                        <hr>
-                        <p>Hisser of the Week is a weekly event that we host. A number is randomly generated and the character whose masterlist number corresponds to it will be the hisser of the week. All art drawn of the character will get +40% teeth. This is completely optional, you do not have to draw them if you do not wish to.</p>
                         </div>
-                        <div class="faq-talk-sprite glacier-talk-sprite"></div>
                     </div>
-                  </li>
-                  <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>What is the species currency?</h2>
-                        <hr>
-                        <p>Hisser teeth is the currency used by all Hoofhissers! You can use this currency to buy items and myo (make your own) eggs instead of having to use real life currency. You can earn hisser teeth by:</p>
-                        <br>
-                        <p class="faq-list">Drawing a hisser on the masterlist and submitting it in ⁠🐊》teeth-submissions.</p>
-                        <p class="faq-list">Sell characters or commissions for teeth in ⁠🦖》character-sales and ⁠🦖》coms-and-ads</p>
-                        <p class="faq-list">Level up and earn teeth from rewards ( ⁠🦖》level-rewards )</p>
-                        <p class="faq-list">Use the .work command daily in ⁠🐍》bots</p>
-                        <br>
-                        <p>The currency is controlled with Unbelievaboat. All users automatically have a bank and inventory when they join.</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>How do I see how much my art is worth in Hisser teeth?</h2>
-                        <hr>
-                        <p>Check the <a href="https://www.example.com" class="link">Currency Guide</a> to see examples and how to price your art in hisser teeth.</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>How do I submit my art to get Hisser teeth?</h2>
-                        <hr>
-                        <p>Look for the currency guide in ⁠🐐》quick-links and price your art accordingly. Then submit your art to ⁠🐊》teeth-submissions and list all the price amounts that apply to your piece.</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>What kind of art can be submitted for hisser teeth?</h2>
-                        <hr>
-                        <p>Art pieces that can be submitted for Hisser Teeth are:</p>
-                        <br>
-                        <p class="faq-list">Myo submission art</p>
-                        <p class="faq-list">Commissioned artwork</p>
-                        <p class="faq-list">Artwork for any current DTAs</p>
-                        <p class="faq-list">Art made on a base or a YCH (can only be redeemed once per base/YCH)</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>Can I transfer teeth to DA points or real currency? Do teeth have any set value outside of this server?</h2>
-                        <hr>
-                        <p>Teeth cannot be transferred to points or real currency. They do not have any set value outside of the server. As such there is no standard conversion rate, so if you are trying to convert your commission prices, feel free to ask for help in ⁠🦎》art-assistance.</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="teeth all">
-                        <div class="faq-text">
-                        <h2>Why is my balance in the negative?</h2>
-                        <hr>
-                        <p>Negative balance is not a mistake! When you buy something from another person, it takes it from your cash balance, not your bank. If you have no money in your cash then instead of taking it from the bank, it’ll put your cash in the negative. Withdrawing that amount will resolve the negative balance. No extra money was taken out of your account, it simply was displayed differently than expected.</p>
-                    </div>
-                    <div class="faq-talk-sprite seamus-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>How do I get an MYO?</h2>
-                            <hr>
-                            <p>You need an egg for an MYO. To get an egg you can:</p>
-                            <br>
-                                <p class="faq-list">Level up in the server by talking, ⁠🦖》level-rewards</p>
-                                <p class="faq-list">Draw art of Hoofhissers on the masterlist (masterlist is in ⁠🐐》quick-links) to get the species currency, Hisser teeth. With Hisser teeth you can buy one from the shops in ⁠🐍》bots.</p>
-                                <p class="faq-list">Or look in ⁠🦖》character-sales to see if someone is selling eggs for cheaper than the shop.</p>
+
+                    <div class="sort-buttons-container">
+                        <div class="sort-btn-contain-left">
+                            <ul class="pagination"></ul>
                         </div>
-                            <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                        <div class="sort-btn-contain-right">
+                            <button class="sort" data-sort="general">General</button>
+                            <button class="sort" data-sort="teeth">Species Currency</button>
+                            <button class="sort" data-sort="egg">MYO</button>
+                            <button class="sort" data-sort="item">Items</button>
+                            <button class="sort" data-sort="mutation">Mutations</button>
+                            <button class="sort" data-sort="pet">Pet</button>
+                            <button class="sort" data-sort="all">All</button>
+                        </div>
                     </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Where are the traits listed?</h2>
-                            <hr>
-                            <p>⁠🐐》quick-links, https://toyhou.se/9813516.trait-sheet  You can also use !traits to have @Pebblebot🐍{!hi!} 💙 reply with the link.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>How do I get my Myo design on the masterlist?</h2>
-                            <hr>
-                            <p>Fill out the masterlist form in ⁠🐐》quick-links, then go to ⁠🐊》myo-submissions and submit a transparent image of your myo design.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Can my hoofhisser have two different traits of the same type? Can I combine traits?</h2>
-                            <hr>
-                            <p>Short answer is it depends. The easiest way to see if your combination would be allowed is to ask in ⁠🐊》myo-qna! You cannot have two different ears, horns (exception for tusk horns), feet, eyes, tail (exception for goat on top), and heat pit traits. However you can combine feet, and on horn traits as long as you have the correct egg for them both. By combining, we don’t mean you can have more limbs, we mean you can take aspects of one trait and add it to another. For example you can have snake horns that are both small and have a cobra hood. You can have three paws and one hoof.</p>
-                            <br>
-                            <p>The webbed feet trait can be combined with other feet traits in order to give them webbing. The only tail traits that can be combined is the goat on top tail with:</p>
-                            <br>
-                               <p class="faq-list">Snake Butt (regular trait)</p>
-                               <p class="faq-list">Rattle snake</p>
-                               <p class="faq-list">Split end</p>
-                               <p class="faq-list">Extra long</p>
-                               <p class="faq-list">Fat</p>
-                               <p class="faq-list">Spines</p>
-                               <p class="faq-list">Mallet</p>
-                               <p class="faq-list">Ankylosaurus</p>
-                               <p class="faq-list">Thunderbolt</p>
-                               <p class="faq-list">Curled</p>
-                               <p class="faq-list">Devil</p>
-                               <p class="faq-list">Snake head</p>
-                               <br>
-                        </div>
-                           <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                        </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Are accessories like piercings and clothing allowed?</h2>
-                            <hr>
-                            <p>Yes! as long as it doesn’t cover up traits. If it covers traits, then you’ll need to add additional drawings to clarify what they look like underneath the accessories! If you are not sure of your hoofhisser, send it in ⁠🐊》myo-qna</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>How can I update the design of a hoofhisser, or the image on the masterlist?</h2>
-                            <hr>
-                            <p>To update the design of a hoofhisser, you may use the form in ⁠🐊》masterlist-changes and post a new image for the ML. You will need items to change aspects of your hisser. If it is potion related traits, you’ll need that potion. If it is trait changes, you’ll need the correct scale (ex: changing thunderbolt horns to ibex would require a rare scale as ibex horns are rare traits). For fur changes it depends on how drastic the change is. Consult staff before posting so you know what items to buy!</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>I want to transfer ownership of a character, where do I do that?</h2>
-                            <hr>
-                            <p>Go in ⁠🐊》masterlist-changes and use the correct form for ownership changes. Please remember to attach proof of trade, whether it be a screenshot of the sale or by pinging the member to confirm it.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Do I need a toyhou.se account to own a hoofhisser?</h2>
-                            <hr>
-                            <p>No! We do not require any other sites, however we do prefer to link to other social medias when uploading hoofhissers or art. This is because discord users can easily be changed and cannot be linked to, so that makes crediting hard. That is why we request that you send a social media in your introduction!</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Do I have to join the toyhouse world? Do I have to link my Hisser’s toyhouse profile with their masterlist entry?</h2>
-                            <hr>
-                            <p>Nope! Both things are completely optional.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Why isn’t anyone checking my myo submission or hisser art?</h2>
-                            <hr>
-                            <p>Please be patient, the staff will get to it once they have a moment. If yours got skipped over, feel free to remind us.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>What is a cbc? What is considered one?</h2>
-                            <hr>
-                            <p>A cbc stands for character based character. Basically, an oc you make that is inspired by a character from a media, such as a tv show or book. Any character that takes heavy inspiration from a preexisting media needs to be approved by staff and use the separate form in myo submissions.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Can I make cbc Hissers?</h2>
-                            <hr>
-                            <p>Yes! Please refer to the trait sheet on toyhouse for more information on what is allowed and what isn’t when designs a cbc.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>Can I make a cbc based off my own oc or myself?</h2>
-                            <hr>
-                            <p>The term cbc only applies to characters you do not own. Making a hoofhisser based off a character you own or yourself, is completely fine.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>What medias aren’t allowed?</h2>
-                            <hr>
-                            <p>We do not allow cbcs to be based off of real people or personalities. This includes actors, YouTubers, and celebrities. We also do not allow cbcs based off of other people’s ocs (especially without permission!). If you are unsure if your media would be allowed, ask before making them.</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="egg all">
-                        <div class="faq-text">
-                            <h2>If I use a mythical egg, can I use only mythical traits or mythical traits and all those below it?</h2>
-                            <hr>
-                            <p>You can use all those below it! This goes for all eggs too. You are not confined to use only traits at that egg’s level, you can use any traits below it too!</p>
-                        </div>
-                        <div class="faq-talk-sprite hearth-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item all">
-                        <div class="faq-text">
-                            <h2>What are items?</h2>
-                            <hr>
-                            <p>Items can be used to remove/add additional features to your Hoofhisser. You can check an item’s info with the .item-info name command in ⁠🐍》bots.</p>
-                        </div>
-                        <div class="faq-talk-sprite pool-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item all">
-                        <div class="faq-text">
-                            <h2>How do I buy eggs or find prices of other items?</h2>
-                            <hr>
-                            <p>Check the shop with the .shop command in ⁠🐍》bots</p>
-                        </div>
-                        <div class="faq-talk-sprite pool-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="item all">
-                        <div class="faq-text">
-                            <h2>Can I get a refund for this item?</h2>
-                            <hr>
-                            <p>Refunds can only be given if the item was bought by mistake within the last 24 hours. If those requirements aren’t met then you can try to sell it in ⁠🦖》coms-and-ads to another member to regain the teeth.</p>
-                        </div>
-                        <div class="faq-talk-sprite pool-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mutation all">
-                        <div class="faq-text">
-                            <h2>Can I use one potion for multiple traits?</h2>
-                            <hr>
-                            <p>With one potion, you can use any amount of traits with it. For example, if you applied an aquatic potion, you can add gills, fins, and a fish tail with only one potion!</p>
-                        </div>
-                        <div class="faq-talk-sprite evergreen-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="mutation all">
-                        <div class="faq-text">
-                            <h2>What’s the difference between potions and vials?</h2>
-                            <hr>
-                            <p>Due to popular demand we introduced vials to make mutations more obtainable. Vials can be used to add one trait to its respective mutation. Potions can add as many mutation traits as you wish. Vials cost less than a potion so they are more cost affective to buy if you only want one or two traits.</p>
-                        </div>
-                        <div class="faq-talk-sprite evergreen-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="pet all">
-                        <div class="faq-text">
-                            <h2>How do pets work?</h2>
-                            <hr>
-                            <p>Pets work by drawing them with your hisser to obtain extra money or items. You do not have to attach the pet to your ⁠🐊》myo-submissions and they can be used for any hoofhisser you have.
-                                When submitting teeth submissions you must have it in your inventory. It will not be taken from you but we will verify that you have it. @Pebblebot🐍{!hi!} 💙 will run an equation to determine what you will get depending on the pet drawn.
-                                Pets are released randomly and a ping will be sent out when they are.</p>
-                        </div>
-                        <div class="faq-talk-sprite hampton-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="pet all">
-                        <div class="faq-text">
-                            <h2>What reward does this pet have?</h2>
-                            <hr>
-                            <p>Check the pet shop on toyhouse for their values (find in ⁠🐐》quick-links or use !pet to get sent a link).</p>
-                        </div>
-                        <div class="faq-talk-sprite hampton-talk-sprite"></div>
-                    </div>
-                </li>
-                <li>
-                    <div class="pet all">
-                        <div class="faq-text">
-                            <h2>Can I sell my pet or transfer it to someone?</h2>
-                            <hr>
-                            <p>Pets can be sold, but not for more than their shop price. They can also be gifted.</p>
-                        </div>
-                        <div class="faq-talk-sprite hampton-talk-sprite"></div>
-                    </div>
-                </li>
-                <!-- <li>
+                    <ul class="list">
+                        <li>
+                            <div class="general all">
+                                <div class="faq-text">
+                                    <h2>What is the Hisser of the Week?</h2>
+                                    <hr>
+                                    <p>Hisser of the Week is a weekly event that we host. A number is randomly generated and the character whose masterlist number corresponds to it will be the hisser of the week. All art drawn of the character will get +40%
+                                        teeth. This is completely optional, you do not have to draw them if you do not wish to.</p>
+                                </div>
+                                <div class="faq-talk-sprite glacier-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>What is the species currency?</h2>
+                                    <hr>
+                                    <p>Hisser teeth is the currency used by all Hoofhissers! You can use this currency to buy items and myo (make your own) eggs instead of having to use real life currency. You can earn hisser teeth by:</p>
+                                    <br>
+                                    <p class="faq-list">Drawing a hisser on the masterlist and submitting it in ⁠🐊》teeth-submissions.</p>
+                                    <p class="faq-list">Sell characters or commissions for teeth in ⁠🦖》character-sales and ⁠🦖》coms-and-ads</p>
+                                    <p class="faq-list">Level up and earn teeth from rewards ( ⁠🦖》level-rewards )</p>
+                                    <p class="faq-list">Use the .work command daily in ⁠🐍》bots</p>
+                                    <br>
+                                    <p>The currency is controlled with Unbelievaboat. All users automatically have a bank and inventory when they join.</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>How do I see how much my art is worth in Hisser teeth?</h2>
+                                    <hr>
+                                    <p>Check the <a href="https://www.example.com" class="link">Currency Guide</a> to see examples and how to price your art in hisser teeth.</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>How do I submit my art to get Hisser teeth?</h2>
+                                    <hr>
+                                    <p>Look for the currency guide in ⁠🐐》quick-links and price your art accordingly. Then submit your art to ⁠🐊》teeth-submissions and list all the price amounts that apply to your piece.</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>What kind of art can be submitted for hisser teeth?</h2>
+                                    <hr>
+                                    <p>Art pieces that can be submitted for Hisser Teeth are:</p>
+                                    <br>
+                                    <p class="faq-list">Myo submission art</p>
+                                    <p class="faq-list">Commissioned artwork</p>
+                                    <p class="faq-list">Artwork for any current DTAs</p>
+                                    <p class="faq-list">Art made on a base or a YCH (can only be redeemed once per base/YCH)</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>Can I transfer teeth to DA points or real currency? Do teeth have any set value outside of this server?</h2>
+                                    <hr>
+                                    <p>Teeth cannot be transferred to points or real currency. They do not have any set value outside of the server. As such there is no standard conversion rate, so if you are trying to convert your commission prices, feel
+                                        free to ask for help in ⁠🦎》art-assistance.</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="teeth all">
+                                <div class="faq-text">
+                                    <h2>Why is my balance in the negative?</h2>
+                                    <hr>
+                                    <p>Negative balance is not a mistake! When you buy something from another person, it takes it from your cash balance, not your bank. If you have no money in your cash then instead of taking it from the bank, it’ll put
+                                        your cash in the negative. Withdrawing that amount will resolve the negative balance. No extra money was taken out of your account, it simply was displayed differently than expected.</p>
+                                </div>
+                                <div class="faq-talk-sprite seamus-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>How do I get an MYO?</h2>
+                                    <hr>
+                                    <p>You need an egg for an MYO. To get an egg you can:</p>
+                                    <br>
+                                    <p class="faq-list">Level up in the server by talking, ⁠🦖》level-rewards</p>
+                                    <p class="faq-list">Draw art of Hoofhissers on the masterlist (masterlist is in ⁠🐐》quick-links) to get the species currency, Hisser teeth. With Hisser teeth you can buy one from the shops in ⁠🐍》bots.</p>
+                                    <p class="faq-list">Or look in ⁠🦖》character-sales to see if someone is selling eggs for cheaper than the shop.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Where are the traits listed?</h2>
+                                    <hr>
+                                    <p>⁠🐐》quick-links, https://toyhou.se/9813516.trait-sheet You can also use !traits to have @Pebblebot🐍{!hi!} 💙 reply with the link.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>How do I get my Myo design on the masterlist?</h2>
+                                    <hr>
+                                    <p>Fill out the masterlist form in ⁠🐐》quick-links, then go to ⁠🐊》myo-submissions and submit a transparent image of your myo design.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Can my hoofhisser have two different traits of the same type? Can I combine traits?</h2>
+                                    <hr>
+                                    <p>Short answer is it depends. The easiest way to see if your combination would be allowed is to ask in ⁠🐊》myo-qna! You cannot have two different ears, horns (exception for tusk horns), feet, eyes, tail (exception for
+                                        goat on top), and heat pit traits. However you can combine feet, and on horn traits as long as you have the correct egg for them both. By combining, we don’t mean you can have more limbs, we mean you can take aspects
+                                        of one trait and add it to another. For example you can have snake horns that are both small and have a cobra hood. You can have three paws and one hoof.</p>
+                                    <br>
+                                    <p>The webbed feet trait can be combined with other feet traits in order to give them webbing. The only tail traits that can be combined is the goat on top tail with:</p>
+                                    <br>
+                                    <p class="faq-list">Snake Butt (regular trait)</p>
+                                    <p class="faq-list">Rattle snake</p>
+                                    <p class="faq-list">Split end</p>
+                                    <p class="faq-list">Extra long</p>
+                                    <p class="faq-list">Fat</p>
+                                    <p class="faq-list">Spines</p>
+                                    <p class="faq-list">Mallet</p>
+                                    <p class="faq-list">Ankylosaurus</p>
+                                    <p class="faq-list">Thunderbolt</p>
+                                    <p class="faq-list">Curled</p>
+                                    <p class="faq-list">Devil</p>
+                                    <p class="faq-list">Snake head</p>
+                                    <br>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Are accessories like piercings and clothing allowed?</h2>
+                                    <hr>
+                                    <p>Yes! as long as it doesn’t cover up traits. If it covers traits, then you’ll need to add additional drawings to clarify what they look like underneath the accessories! If you are not sure of your hoofhisser, send it
+                                        in ⁠🐊》myo-qna</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>How can I update the design of a hoofhisser, or the image on the masterlist?</h2>
+                                    <hr>
+                                    <p>To update the design of a hoofhisser, you may use the form in ⁠🐊》masterlist-changes and post a new image for the ML. You will need items to change aspects of your hisser. If it is potion related traits, you’ll need
+                                        that potion. If it is trait changes, you’ll need the correct scale (ex: changing thunderbolt horns to ibex would require a rare scale as ibex horns are rare traits). For fur changes it depends on how drastic the
+                                        change is. Consult staff before posting so you know what items to buy!</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>I want to transfer ownership of a character, where do I do that?</h2>
+                                    <hr>
+                                    <p>Go in ⁠🐊》masterlist-changes and use the correct form for ownership changes. Please remember to attach proof of trade, whether it be a screenshot of the sale or by pinging the member to confirm it.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Do I need a toyhou.se account to own a hoofhisser?</h2>
+                                    <hr>
+                                    <p>No! We do not require any other sites, however we do prefer to link to other social medias when uploading hoofhissers or art. This is because discord users can easily be changed and cannot be linked to, so that makes
+                                        crediting hard. That is why we request that you send a social media in your introduction!</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Do I have to join the toyhouse world? Do I have to link my Hisser’s toyhouse profile with their masterlist entry?</h2>
+                                    <hr>
+                                    <p>Nope! Both things are completely optional.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Why isn’t anyone checking my myo submission or hisser art?</h2>
+                                    <hr>
+                                    <p>Please be patient, the staff will get to it once they have a moment. If yours got skipped over, feel free to remind us.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>What is a cbc? What is considered one?</h2>
+                                    <hr>
+                                    <p>A cbc stands for character based character. Basically, an oc you make that is inspired by a character from a media, such as a tv show or book. Any character that takes heavy inspiration from a preexisting media needs
+                                        to be approved by staff and use the separate form in myo submissions.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Can I make cbc Hissers?</h2>
+                                    <hr>
+                                    <p>Yes! Please refer to the trait sheet on toyhouse for more information on what is allowed and what isn’t when designs a cbc.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>Can I make a cbc based off my own oc or myself?</h2>
+                                    <hr>
+                                    <p>The term cbc only applies to characters you do not own. Making a hoofhisser based off a character you own or yourself, is completely fine.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>What medias aren’t allowed?</h2>
+                                    <hr>
+                                    <p>We do not allow cbcs to be based off of real people or personalities. This includes actors, YouTubers, and celebrities. We also do not allow cbcs based off of other people’s ocs (especially without permission!). If
+                                        you are unsure if your media would be allowed, ask before making them.</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="egg all">
+                                <div class="faq-text">
+                                    <h2>If I use a mythical egg, can I use only mythical traits or mythical traits and all those below it?</h2>
+                                    <hr>
+                                    <p>You can use all those below it! This goes for all eggs too. You are not confined to use only traits at that egg’s level, you can use any traits below it too!</p>
+                                </div>
+                                <div class="faq-talk-sprite hearth-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item all">
+                                <div class="faq-text">
+                                    <h2>What are items?</h2>
+                                    <hr>
+                                    <p>Items can be used to remove/add additional features to your Hoofhisser. You can check an item’s info with the .item-info name command in ⁠🐍》bots.</p>
+                                </div>
+                                <div class="faq-talk-sprite pool-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item all">
+                                <div class="faq-text">
+                                    <h2>How do I buy eggs or find prices of other items?</h2>
+                                    <hr>
+                                    <p>Check the shop with the .shop command in ⁠🐍》bots</p>
+                                </div>
+                                <div class="faq-talk-sprite pool-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="item all">
+                                <div class="faq-text">
+                                    <h2>Can I get a refund for this item?</h2>
+                                    <hr>
+                                    <p>Refunds can only be given if the item was bought by mistake within the last 24 hours. If those requirements aren’t met then you can try to sell it in ⁠🦖》coms-and-ads to another member to regain the teeth.</p>
+                                </div>
+                                <div class="faq-talk-sprite pool-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mutation all">
+                                <div class="faq-text">
+                                    <h2>Can I use one potion for multiple traits?</h2>
+                                    <hr>
+                                    <p>With one potion, you can use any amount of traits with it. For example, if you applied an aquatic potion, you can add gills, fins, and a fish tail with only one potion!</p>
+                                </div>
+                                <div class="faq-talk-sprite evergreen-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mutation all">
+                                <div class="faq-text">
+                                    <h2>What’s the difference between potions and vials?</h2>
+                                    <hr>
+                                    <p>Due to popular demand we introduced vials to make mutations more obtainable. Vials can be used to add one trait to its respective mutation. Potions can add as many mutation traits as you wish. Vials cost less than a
+                                        potion so they are more cost affective to buy if you only want one or two traits.</p>
+                                </div>
+                                <div class="faq-talk-sprite evergreen-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pet all">
+                                <div class="faq-text">
+                                    <h2>How do pets work?</h2>
+                                    <hr>
+                                    <p>Pets work by drawing them with your hisser to obtain extra money or items. You do not have to attach the pet to your ⁠🐊》myo-submissions and they can be used for any hoofhisser you have. When submitting teeth submissions
+                                        you must have it in your inventory. It will not be taken from you but we will verify that you have it. @Pebblebot🐍{!hi!} 💙 will run an equation to determine what you will get depending on the pet drawn. Pets are
+                                        released randomly and a ping will be sent out when they are.</p>
+                                </div>
+                                <div class="faq-talk-sprite hampton-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pet all">
+                                <div class="faq-text">
+                                    <h2>What reward does this pet have?</h2>
+                                    <hr>
+                                    <p>Check the pet shop on toyhouse for their values (find in ⁠🐐》quick-links or use !pet to get sent a link).</p>
+                                </div>
+                                <div class="faq-talk-sprite hampton-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="pet all">
+                                <div class="faq-text">
+                                    <h2>Can I sell my pet or transfer it to someone?</h2>
+                                    <hr>
+                                    <p>Pets can be sold, but not for more than their shop price. They can also be gifted.</p>
+                                </div>
+                                <div class="faq-talk-sprite hampton-talk-sprite"></div>
+                            </div>
+                        </li>
+                        <!-- <li>
                     <div class="pet all">
                         <div class="faq-text">
                             <h2></h2>
@@ -714,319 +778,348 @@ justify-content: center; /* Horizontally center the content */
                         <div class="faq-talk-sprite hampton-talk-sprite"></div>
                     </div>
                 </li> -->
-                </ul>
-              </div>
-          </div>
-      </div>
-  </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <div id="footer-template"></div>
+    <div id="footer-template"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        fetch('templates/banner-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('banner-template').innerHTML = html;
-    });
-
-  fetch('templates/info-nav-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('info-template').innerHTML = html;
-    });
-
-  fetch('templates/explore-nav-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('explore-template').innerHTML = html;
-    });
-
-    fetch('templates/shops-nav-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('shops-template').innerHTML = html;
-    });
-    
-    // fetch('templates/help-nav-template.html')
-    // .then(response => response.text())
-    // .then(html => {
-    //   document.getElementById('help-template').innerHTML = html;
-    // });
-
-    fetch('templates/help-nav-template.html')
-  .then(response => response.text())
-  .then(html => {
-    // Create a temporary container element
-    const tempContainer = document.createElement('div');
-    tempContainer.innerHTML = html;
-
-    // Find all elements with the ID "Info" inside the fetched HTML
-    const elementsWithInfoId = tempContainer.querySelectorAll('#FAQ');
-
-    // Add the desired class to each element found
-    elementsWithInfoId.forEach(element => {
-      element.classList.add('dropdown-current');
-    });
-
-    // Insert the modified HTML into the main document
-    document.getElementById('help-template').appendChild(tempContainer);
-  });
-
-    fetch('templates/activities-nav-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('activities-template').innerHTML = html;
-    });
-
-    fetch('templates/footer-template.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('footer-template').innerHTML = html;
-    });
-
-    //     -----------------
-//     Search Start
-// -----------------
-
-// Amount of list items per page
-const LIST_ITEMS = 10;
-
-        var monkeyList = new List('test-list', {
-            valueNames: ['general', 'teeth', 'egg', 'item', 'mutation', 'pet', 'all'],
-            page: LIST_ITEMS,
-            pagination: true
-        });
-
-        // Function to handle pagination and highlight the current page
-        function handlePagination() {
-            var paginationItems = document.querySelectorAll('.pagination li');
-            paginationItems.forEach(function(item, index) {
-                item.addEventListener('click', function() {
-                    // Remove active class from all pagination items
-                    paginationItems.forEach(function(item) {
-                        item.classList.remove('active-page');
-                    });
-                    // Add active class to the clicked pagination item
-                    item.classList.add('active-page');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('templates/banner-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('banner-template').innerHTML = html;
                 });
-            });
-        }
-        // Function to handle sorting buttons and highlight the current one
-        function handleSortingButtons() {
-    var sortingButtons = document.querySelectorAll('.sort');
-    sortingButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Reset pagination to the first page
-            monkeyList.show(1, LIST_ITEMS); // change second number based on items per page
-            
-            // Remove active class from all sorting buttons
-            sortingButtons.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            // Add active class to the clicked sorting button
-            button.classList.add('active');
-        });
-    });
-}
 
-        // Call the handlePagination and handleSortingButtons functions
-        handlePagination();
-        handleSortingButtons();
+            fetch('templates/info-nav-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('info-template').innerHTML = html;
+                });
 
-        // Function to sort by general
-        function sortBygeneral() {
-            monkeyList.sort('general', { order: "desc" });
-        }
-    
-        // Function to sort by teeth
-        function sortByteeth() {
-            monkeyList.sort('teeth', { order: "desc" });
-        }
-          // Function to sort by egg
-          function sortByegg() {
-            monkeyList.sort('egg', { order: "desc" });
-        }
-          // Function to sort by egg
-          function sortByitem() {
-            monkeyList.sort('item', { order: "desc" });
-        }
-          // Function to sort by egg
-          function sortBymutation() {
-            monkeyList.sort('mutation', { order: "desc" });
-        }
-          // Function to sort by egg
-          function sortBypet() {
-            monkeyList.sort('pet', { order: "desc" });
-        }
-    
-        // Function to sort by all
-        function sortByAll() {
-            monkeyList.sort('all', { order: "desc", sortFunction: function(a, b) {
-                    return a.values().join('').localeCompare(b.values().join(''));
+            fetch('templates/explore-nav-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('explore-template').innerHTML = html;
+                });
+
+            fetch('templates/shops-nav-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('shops-template').innerHTML = html;
+                });
+
+            // fetch('templates/help-nav-template.html')
+            // .then(response => response.text())
+            // .then(html => {
+            //   document.getElementById('help-template').innerHTML = html;
+            // });
+
+            fetch('templates/help-nav-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    // Create a temporary container element
+                    const tempContainer = document.createElement('div');
+                    tempContainer.innerHTML = html;
+
+                    // Find all elements with the ID "Info" inside the fetched HTML
+                    const elementsWithInfoId = tempContainer.querySelectorAll('#FAQ');
+
+                    // Add the desired class to each element found
+                    elementsWithInfoId.forEach(element => {
+                        element.classList.add('dropdown-current');
+                    });
+
+                    // Insert the modified HTML into the main document
+                    document.getElementById('help-template').appendChild(tempContainer);
+                });
+
+            fetch('templates/activities-nav-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('activities-template').innerHTML = html;
+                });
+
+            fetch('templates/footer-template.html')
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('footer-template').innerHTML = html;
+                });
+
+            //     -----------------
+            //     Search Start
+            // -----------------
+
+            // Amount of list items per page
+            const LIST_ITEMS = 10;
+
+            var monkeyList = new List('test-list', {
+                valueNames: ['general', 'teeth', 'egg', 'item', 'mutation', 'pet', 'all'],
+                page: LIST_ITEMS,
+                pagination: true
+            });
+
+            // Function to handle pagination and highlight the current page
+            function handlePagination() {
+                var paginationItems = document.querySelectorAll('.pagination li');
+                paginationItems.forEach(function(item, index) {
+                    item.addEventListener('click', function() {
+                        // Remove active class from all pagination items
+                        paginationItems.forEach(function(item) {
+                            item.classList.remove('active-page');
+                        });
+                        // Add active class to the clicked pagination item
+                        item.classList.add('active-page');
+                    });
+                });
+            }
+            // Function to handle sorting buttons and highlight the current one
+            function handleSortingButtons() {
+                var sortingButtons = document.querySelectorAll('.sort');
+                sortingButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        // Reset pagination to the first page
+                        monkeyList.show(1, LIST_ITEMS); // change second number based on items per page
+
+                        // Remove active class from all sorting buttons
+                        sortingButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        // Add active class to the clicked sorting button
+                        button.classList.add('active');
+                    });
+                });
+            }
+
+            // Call the handlePagination and handleSortingButtons functions
+            handlePagination();
+            handleSortingButtons();
+
+            // Function to sort by general
+            function sortBygeneral() {
+                monkeyList.sort('general', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by teeth
+            function sortByteeth() {
+                monkeyList.sort('teeth', {
+                    order: "desc"
+                });
+            }
+            // Function to sort by egg
+            function sortByegg() {
+                monkeyList.sort('egg', {
+                    order: "desc"
+                });
+            }
+            // Function to sort by egg
+            function sortByitem() {
+                monkeyList.sort('item', {
+                    order: "desc"
+                });
+            }
+            // Function to sort by egg
+            function sortBymutation() {
+                monkeyList.sort('mutation', {
+                    order: "desc"
+                });
+            }
+            // Function to sort by egg
+            function sortBypet() {
+                monkeyList.sort('pet', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by all
+            function sortByAll() {
+                monkeyList.sort('all', {
+                    order: "desc",
+                    sortFunction: function(a, b) {
+                        return a.values().join('').localeCompare(b.values().join(''));
+                    }
+                });
+            }
+
+            // Bind sorting functions to buttons
+            document.querySelector('.sort[data-sort="general"]').addEventListener('click', sortBygeneral);
+            document.querySelector('.sort[data-sort="teeth"]').addEventListener('click', sortByteeth);
+            document.querySelector('.sort[data-sort="egg"]').addEventListener('click', sortByegg);
+            document.querySelector('.sort[data-sort="item"]').addEventListener('click', sortByitem);
+            document.querySelector('.sort[data-sort="mutation"]').addEventListener('click', sortBymutation);
+            document.querySelector('.sort[data-sort="pet"]').addEventListener('click', sortBypet);
+            document.querySelector('.sort[data-sort="all"]').addEventListener('click', sortByAll);
+
+            //     -----------------
+            //     Search Start
+            // -----------------
+            // Get the input element and the clear button
+            const searchInput = document.querySelector('.search');
+            const clearButtonFAQ = document.getElementById("clearButtonFAQ");
+
+            // Function to update list options based on search input value
+            function updateListOptions() {
+                const searchValue = searchInput.value.toLowerCase();
+                monkeyList.search(searchValue);
+            }
+
+            // Add event listener to the input field to check for changes in its value
+            searchInput.addEventListener("input", function() {
+                // Show the clear button if the input field is not empty, otherwise hide it
+                if (this.value.trim() !== "") {
+                    clearButtonFAQ.style.display = "block";
+                } else {
+                    clearButtonFAQ.style.display = "none";
                 }
+
+                // Update list options based on search input value
+                updateListOptions();
             });
-        }
-    
-        // Bind sorting functions to buttons
-        document.querySelector('.sort[data-sort="general"]').addEventListener('click', sortBygeneral);
-        document.querySelector('.sort[data-sort="teeth"]').addEventListener('click', sortByteeth);
-        document.querySelector('.sort[data-sort="egg"]').addEventListener('click', sortByegg);
-        document.querySelector('.sort[data-sort="item"]').addEventListener('click', sortByitem);
-        document.querySelector('.sort[data-sort="mutation"]').addEventListener('click', sortBymutation);
-        document.querySelector('.sort[data-sort="pet"]').addEventListener('click', sortBypet);
-        document.querySelector('.sort[data-sort="all"]').addEventListener('click', sortByAll);
 
-        //     -----------------
-//     Search Start
-// -----------------
-// Get the input element and the clear button
-const searchInput = document.querySelector('.search');
-const clearButtonFAQ = document.getElementById("clearButtonFAQ");
+            // // Add event listener to the input field to clear the input value when it loses focus
+            // searchInput.addEventListener('blur', function() {
+            //     // Clear the input field value
+            //     this.value = '';
 
-// Function to update list options based on search input value
-function updateListOptions() {
-    const searchValue = searchInput.value.toLowerCase();
-    monkeyList.search(searchValue);
-}
+            //     // Hide the clear button
+            //     clearButtonFAQ.style.display = 'none';
 
-// Add event listener to the input field to check for changes in its value
-searchInput.addEventListener("input", function() {
-    // Show the clear button if the input field is not empty, otherwise hide it
-    if (this.value.trim() !== "") {
-        clearButtonFAQ.style.display = "block";
-    } else {
-        clearButtonFAQ.style.display = "none";
-    }
+            //     // Update list options to show all items
+            //     updateListOptions();
+            // });
 
-    // Update list options based on search input value
-    updateListOptions();
-});
+            // Add event listener to the clear button to clear the input field when clicked
+            clearButtonFAQ.addEventListener("click", function(event) {
+                // Prevent the default behavior of a button click
+                event.preventDefault();
 
-// // Add event listener to the input field to clear the input value when it loses focus
-// searchInput.addEventListener('blur', function() {
-//     // Clear the input field value
-//     this.value = '';
+                // Clear the input field value
+                searchInput.value = "";
 
-//     // Hide the clear button
-//     clearButtonFAQ.style.display = 'none';
+                // Hide the clear button
+                clearButtonFAQ.style.display = "none";
 
-//     // Update list options to show all items
-//     updateListOptions();
-// });
+                // Update list options to show all items
+                monkeyList.search(); // This line will reset the search and display all items
 
-// Add event listener to the clear button to clear the input field when clicked
-clearButtonFAQ.addEventListener("click", function(event) {
-    // Prevent the default behavior of a button click
-    event.preventDefault();
-
-    // Clear the input field value
-    searchInput.value = "";
-
-    // Hide the clear button
-    clearButtonFAQ.style.display = "none";
-
-    // Update list options to show all items
-    monkeyList.search(); // This line will reset the search and display all items
-
-    // Focus on the search input
-    searchInput.focus();
-});
-
-
-
-// Function to handle pagination and highlight the current page
-function handlePagination() {
-    var paginationItems = document.querySelectorAll('.pagination li');
-    paginationItems.forEach(function(item, index) {
-        item.addEventListener('click', function() {
-            // Remove active class from all pagination items
-            paginationItems.forEach(function(item) {
-                item.classList.remove('active-page');
+                // Focus on the search input
+                searchInput.focus();
             });
-            // Add active class to the clicked pagination item
-            item.classList.add('active-page');
+
+
+
+            // Function to handle pagination and highlight the current page
+            function handlePagination() {
+                var paginationItems = document.querySelectorAll('.pagination li');
+                paginationItems.forEach(function(item, index) {
+                    item.addEventListener('click', function() {
+                        // Remove active class from all pagination items
+                        paginationItems.forEach(function(item) {
+                            item.classList.remove('active-page');
+                        });
+                        // Add active class to the clicked pagination item
+                        item.classList.add('active-page');
+                    });
+                });
+            }
+
+            // Function to handle sorting buttons and highlight the current one
+            function handleSortingButtons() {
+                var sortingButtons = document.querySelectorAll('.sort');
+                sortingButtons.forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        // Reset pagination to the first page
+                        monkeyList.show(1, LIST_ITEMS); // change second number based on items per page
+
+                        // Remove active class from all sorting buttons
+                        sortingButtons.forEach(function(btn) {
+                            btn.classList.remove('active');
+                        });
+                        // Add active class to the clicked sorting button
+                        button.classList.add('active');
+                    });
+                });
+            }
+
+            // Call the handlePagination and handleSortingButtons functions
+            handlePagination();
+            handleSortingButtons();
+
+            // Function to sort by general
+            function sortBygeneral() {
+                monkeyList.sort('general', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by teeth
+            function sortByteeth() {
+                monkeyList.sort('teeth', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by egg
+            function sortByegg() {
+                monkeyList.sort('egg', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by egg
+            function sortByitem() {
+                monkeyList.sort('item', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by egg
+            function sortBymutation() {
+                monkeyList.sort('mutation', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by egg
+            function sortBypet() {
+                monkeyList.sort('pet', {
+                    order: "desc"
+                });
+            }
+
+            // Function to sort by all
+            function sortByAll() {
+                monkeyList.sort('all', {
+                    order: "desc",
+                    sortFunction: function(a, b) {
+                        return a.values().join('').localeCompare(b.values().join(''));
+                    }
+                });
+            }
+
+            // Bind sorting functions to buttons
+            document.querySelector('.sort[data-sort="general"]').addEventListener('click', sortBygeneral);
+            document.querySelector('.sort[data-sort="teeth"]').addEventListener('click', sortByteeth);
+            document.querySelector('.sort[data-sort="egg"]').addEventListener('click', sortByegg);
+            document.querySelector('.sort[data-sort="item"]').addEventListener('click', sortByitem);
+            document.querySelector('.sort[data-sort="mutation"]').addEventListener('click', sortBymutation);
+            document.querySelector('.sort[data-sort="pet"]').addEventListener('click', sortBypet);
+            document.querySelector('.sort[data-sort="all"]').addEventListener('click', sortByAll);
+
+            //     -----------------
+            //     Search End
+            // -----------------
+
         });
-    });
-}
+    </script>
 
-// Function to handle sorting buttons and highlight the current one
-function handleSortingButtons() {
-    var sortingButtons = document.querySelectorAll('.sort');
-    sortingButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Reset pagination to the first page
-            monkeyList.show(1, LIST_ITEMS); // change second number based on items per page
-            
-            // Remove active class from all sorting buttons
-            sortingButtons.forEach(function(btn) {
-                btn.classList.remove('active');
-            });
-            // Add active class to the clicked sorting button
-            button.classList.add('active');
-        });
-    });
-}
-
-// Call the handlePagination and handleSortingButtons functions
-handlePagination();
-handleSortingButtons();
-
-// Function to sort by general
-function sortBygeneral() {
-    monkeyList.sort('general', { order: "desc" });
-}
-
-// Function to sort by teeth
-function sortByteeth() {
-    monkeyList.sort('teeth', { order: "desc" });
-}
-
-// Function to sort by egg
-function sortByegg() {
-    monkeyList.sort('egg', { order: "desc" });
-}
-
-// Function to sort by egg
-function sortByitem() {
-    monkeyList.sort('item', { order: "desc" });
-}
-
-// Function to sort by egg
-function sortBymutation() {
-    monkeyList.sort('mutation', { order: "desc" });
-}
-
-// Function to sort by egg
-function sortBypet() {
-    monkeyList.sort('pet', { order: "desc" });
-}
-
-// Function to sort by all
-function sortByAll() {
-    monkeyList.sort('all', { order: "desc", sortFunction: function(a, b) {
-            return a.values().join('').localeCompare(b.values().join(''));
-        }
-    });
-}
-
-// Bind sorting functions to buttons
-document.querySelector('.sort[data-sort="general"]').addEventListener('click', sortBygeneral);
-document.querySelector('.sort[data-sort="teeth"]').addEventListener('click', sortByteeth);
-document.querySelector('.sort[data-sort="egg"]').addEventListener('click', sortByegg);
-document.querySelector('.sort[data-sort="item"]').addEventListener('click', sortByitem);
-document.querySelector('.sort[data-sort="mutation"]').addEventListener('click', sortBymutation);
-document.querySelector('.sort[data-sort="pet"]').addEventListener('click', sortBypet);
-document.querySelector('.sort[data-sort="all"]').addEventListener('click', sortByAll);
-
-//     -----------------
-//     Search End
-// -----------------
-
-    });
-  </script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+
 </html>
